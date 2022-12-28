@@ -1,0 +1,32 @@
+{
+  "files": {
+    "app.js": "/static/js/app.4d0c811d.chunk.js",
+    "app.js.map": "/static/js/app.4d0c811d.chunk.js.map",
+    "runtime~app.js": "/static/js/runtime~app.27401809.js",
+    "runtime~app.js.map": "/static/js/runtime~app.27401809.js.map",
+    "static/js/2.072d68a8.chunk.js": "/static/js/2.072d68a8.chunk.js",
+    "static/js/2.072d68a8.chunk.js.map": "/static/js/2.072d68a8.chunk.js.map",
+    "fonts/Inter_100Thin.ttf": "/./fonts/Inter_100Thin.ttf",
+    "fonts/Inter_200ExtraLight.ttf": "/./fonts/Inter_200ExtraLight.ttf",
+    "fonts/Inter_300Light.ttf": "/./fonts/Inter_300Light.ttf",
+    "fonts/Inter_400Regular.ttf": "/./fonts/Inter_400Regular.ttf",
+    "fonts/Inter_500Medium.ttf": "/./fonts/Inter_500Medium.ttf",
+    "fonts/Inter_600SemiBold.ttf": "/./fonts/Inter_600SemiBold.ttf",
+    "fonts/Inter_700Bold.ttf": "/./fonts/Inter_700Bold.ttf",
+    "fonts/Inter_800ExtraBold.ttf": "/./fonts/Inter_800ExtraBold.ttf",
+    "fonts/Inter_900Black.ttf": "/./fonts/Inter_900Black.ttf",
+    "favicon-16.png": "/favicon-16.png",
+    "favicon-32.png": "/favicon-32.png",
+    "favicon.ico": "/favicon.ico",
+    "index.html": "/index.html",
+    "manifest.json": "/manifest.json",
+    "serve.json": "/serve.json",
+    "static/js/2.072d68a8.chunk.js.LICENSE.txt": "/static/js/2.072d68a8.chunk.js.LICENSE.txt",
+    "static/media/x.png": "/static/media/x.bc64bca0.png"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.27401809.js",
+    "static/js/2.072d68a8.chunk.js",
+    "static/js/app.4d0c811d.chunk.js"
+  ]
+}
