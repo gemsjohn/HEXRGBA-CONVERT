@@ -188,28 +188,11 @@ export const Convert = () => {
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                         >
-                            {/* {isHovered &&
-                                <View style={{ 
-                                    backgroundColor: '#80ed99', 
-                                    padding: '1rem', 
-                                    borderRadius: 30 
-                                }}>
-                                    <Text style={{ 
-                                        color: 'white', 
-                                        fontSize: '5vh', 
-                                        fontFamily: 'Inter_900Black', 
-                                        alignSelf: 'center', 
-                                        textShadowColor: 'rgba(0, 0, 0, 1)', 
-                                        textShadowOffset: { width: -1, height: 1 }, 
-                                        textShadowRadius: 1 
-                                    }}>Copy!</Text>
-                                </View>
-                            } */}
 
                             <Text style={{
                                 color: 'black',
                                 fontSize: 30,
-                                marginTop: '4vh',
+                                marginTop: '0.5rem',
                                 marginBottom: '2vh',
                                 fontFamily: 'Inter_900Black',
                                 alignSelf: 'center'
@@ -219,7 +202,7 @@ export const Convert = () => {
                                 <Text style={{
                                     color: 'black',
                                     fontSize: 20,
-                                    margin: HeightRatio(20),
+                                    margin: '0.5rem',
                                     fontFamily: 'Inter_900Black',
                                     alignSelf: 'center'
                                 }}>Copied!</Text>
@@ -285,8 +268,11 @@ export const Convert = () => {
 
 
             </View>
-            <View style={{alignSelf: 'center'}}>
+            <View style={{alignSelf: 'center', flexDirection: 'column'}}>
                     <Text style={{color: 'white', fontFamily: 'Inter_900Black', fontSize: '5rem'}}>{gradientCopiedText}</Text>
+                    {gradientCopiedText != '' &&
+                        <Text style={{color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center'}}>Copied!</Text>
+                    }
                 </View>
 
 
