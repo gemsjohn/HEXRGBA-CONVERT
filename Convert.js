@@ -102,24 +102,25 @@ export const Convert = () => {
 
     return (
         <View>
-            <Text style={{ fontFamily: 'Inter_900Black', fontSize: 40, alignSelf: 'center' }}>Convert HEX or RGBA</Text>
+            <Text style={{ fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center' }}>Convert HEX or RGBA</Text>
             
             <View style={{backgroundColor: 'transparent', borderBottomWidth: 6, borderColor: 'rgba(0, 0, 0, 0.25)'}}>
-                {/* {value &&
-                    <TouchableOpacity onPress={() => {setValue('')}} style={{height: HeightRatio(28), width: HeightRatio(28), borderRadius: 10, position: 'absolute', zIndex: 10, backgroundColor: 'red', top: HeightRatio(-10)}}>
-                        <Image source={require('./assets/x.png')} style={{height: 15, width: 15, alignSelf: 'center', marginTop: HeightRatio(8), marginLeft: WidthRatio(.5) }} />
+                {value &&
+                    <TouchableOpacity onPress={() => {setValue('')}} style={{height: '4vh', width: '4vh', borderRadius: 10, position: 'absolute', zIndex: 10, backgroundColor: 'red', top: '1vh'}}>
+                        <Image source={require('./assets/x.png')} style={{height: 15, width: 15, alignSelf: 'center', marginTop: '1.1vh', marginLeft: '0.3vh' }} />
                     </TouchableOpacity>
-                } */}
+                }
                 <View style={{ flexDirection: 'row', alignSelf: 'center', margin: 10 }}>
-                    {value &&
+                    {/* {value &&
                         <TouchableOpacity onPress={() => {setValue('')}} style={{height: HeightRatio(60), width: HeightRatio(60), borderRadius: 10, backgroundColor: 'red', alignSelf: 'center', margin: 10}}>
                             <Image source={require('./assets/x.png')} style={{height: 25, width: 25, alignSelf: 'center', marginTop: HeightRatio(20), marginLeft: WidthRatio(.5) }} />
                         </TouchableOpacity>
-                    }
+                    } */}
                     <TextInput
                         value={value}
                         onChangeText={setValue}
                         placeholder="Enter HEX or RGBA value"
+                        // multiline={2}
                         style={{
                             outline: 'none',
                             backgroundColor: 'transparent',
@@ -138,8 +139,8 @@ export const Convert = () => {
                             alignSelf: 'center',
                             marginTop: 10,
                             marginBottom: 4,
-                            width: windowWidth/4,
-                            fontSize: 20
+                            width: '16rem',
+                            fontSize: '2vh'
                         }}
                     />
                     {/* [[[SUMBIT BUTTON]]] */}
@@ -147,7 +148,7 @@ export const Convert = () => {
                         onPress={() => handleConvert()}
                         style={{
                             backgroundColor: '#2ec4b6',
-                            padding: 9,
+                            padding: '1vh',
                             border: 'solid',
                             borderColor: 'black',
                             borderTopWidth: 4,
@@ -158,9 +159,10 @@ export const Convert = () => {
                             borderBottomRightRadius: 30,
                             marginTop: 10,
                             marginBottom: 4,
+                            width: '6rem'
                         }}
                     >
-                        <Text style={{ color: 'black', margin: HeightRatio(14), fontSize: 30, fontFamily: 'Inter_900Black'}}>Convert</Text>
+                        <Text style={{ color: 'black', marginTop: '2.5vh', fontSize: '2vh', fontFamily: 'Inter_900Black', alignSelf: 'center'}}>Convert</Text>
                     </TouchableOpacity>
                 </View>
                         {result ? 
@@ -175,16 +177,16 @@ export const Convert = () => {
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                         >
-                            {isHovered && <Text style={{ position: 'absolute', color: 'rgba(0, 0, 0, 0.5)', fontSize: 20, margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center', left: 0, top: 0}}>Copy!</Text>}
-                            <Text style={{color: 'black', fontSize: 30, margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center'}}>{result}</Text>
+                            {isHovered && <Text style={{ position: 'absolute', color: 'rgba(0, 0, 0, 0.5)', fontSize: '2vh', margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center', left: 0, top: -5}}>Copy!</Text>}
+                            <Text style={{color: 'black', fontSize: 30, marginTop: '4vh', marginBottom: '2vh', fontFamily: 'Inter_900Black', alignSelf: 'center'}}>{result}</Text>
                             {copiedText != '' && <Text style={{color: 'black', fontSize: 20, margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center'}}>Copied!</Text>}
-                            <View style={{width: windowWidth/4, alignSelf: 'center', height: HeightRatio(250), marginBottom: HeightRatio(20), borderRadius: 30, backgroundColor: `${result}`}}></View>
+                            <View style={{width: '18rem', alignSelf: 'center', height: '15rem', marginBottom: HeightRatio(20), borderRadius: 30, backgroundColor: `${result}`}}></View>
                         </TouchableOpacity>
                         </>
                         :
                         <>
                             <Text style={{color: 'rgba(0, 0, 0, 0.4)', fontSize: 30, margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center'}}>...result</Text>
-                            <View style={{width: windowWidth/4, alignSelf: 'center', height: HeightRatio(250), marginBottom: HeightRatio(20), borderRadius: 30, borderWidth: 4, borderColor: 'rgba(0, 0, 0, 0.4)'}}></View>
+                            <View style={{width: '18rem', alignSelf: 'center', height: '15rem', marginBottom: HeightRatio(20), borderRadius: 30, borderWidth: 4, borderColor: 'rgba(0, 0, 0, 0.4)'}}></View>
                         </>
                         }
                     
@@ -208,11 +210,15 @@ const styles = StyleSheet.create({
     hoveredButton: {
       backgroundColor: '#eee',
       borderRadius: 40,
-      marginBottom: HeightRatio(20)
+      marginBottom: HeightRatio(20),
+      width: '22rem',
+      alignSelf: 'center'
     },
     normalButton: {
       backgroundColor: '#fff',
-      marginBottom: HeightRatio(20)
+      marginBottom: HeightRatio(20),
+      width: '22rem',
+      alignSelf: 'center'
     },
     buttonText: {
       color: '#000',
