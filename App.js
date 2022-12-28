@@ -51,7 +51,6 @@ export default function App() {
     {/* <DisplayGradient /> */}
     <View style={{backgroundColor: '#ffff3f', height: HeightRatio(100), width: windowWidth, borderBottomRightRadius: 90, borderBottomLeftRadius: 90}}>
         <Text style={{color: '#000814', alignSelf: 'center', marginTop: HeightRatio(10), fontSize: 70, fontWeight: 'bold'}}>HEX To RGBA Pro</Text>
-        {/* <View style={{borderBottomWidth: 6, borderBottomColor: '#000814', width: windowWidth/3, alignSelf: 'center'}}></View> */}
     </View>
     <View style={styles.container}>
       <Convert />
