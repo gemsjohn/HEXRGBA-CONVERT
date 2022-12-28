@@ -102,11 +102,11 @@ export const Convert = () => {
 
     return (
         <View>
-            <Text style={{ fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center' }}>Convert HEX or RGBA</Text>
+            <Text style={{ fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center', color: 'white' }}>Convert HEX or RGBA</Text>
             
-            <View style={{backgroundColor: 'transparent', borderBottomWidth: 6, borderColor: 'rgba(0, 0, 0, 0.25)'}}>
+            <View style={{}}>
                 {value &&
-                    <TouchableOpacity onPress={() => {setValue('')}} style={{height: '4vh', width: '4vh', borderRadius: 10, position: 'absolute', zIndex: 10, backgroundColor: 'red', top: '1vh'}}>
+                    <TouchableOpacity onPress={() => {setValue('')}} style={{height: '4vh', width: '4vh', borderRadius: 10, position: 'absolute', zIndex: 10, backgroundColor: '#ff1654', top: '1vh'}}>
                         <Image source={require('./assets/x.png')} style={{height: 15, width: 15, alignSelf: 'center', marginTop: '1.1vh', marginLeft: '0.3vh' }} />
                     </TouchableOpacity>
                 }
@@ -120,49 +120,51 @@ export const Convert = () => {
                         value={value}
                         onChangeText={setValue}
                         placeholder="Enter HEX or RGBA value"
+                        
                         // multiline={2}
                         style={{
                             outline: 'none',
                             backgroundColor: 'transparent',
-                            color: 'black',
+                            color: 'white',
                             display: 'flex',
                             justifyContent: 'flex-start',
                             padding: 30,
                             border: 'solid',
-                            borderColor: 'black',
+                            borderColor: 'white',
                             borderTopWidth: 4,
                             borderLeftWidth: 4,
                             borderBottomWidth: 4,
                             borderRightWidth:0,
                             borderTopLeftRadius: 30,
-                            borderBottomLeftRadius: 30,
+                            borderBottomLeftRadius: 10,
                             alignSelf: 'center',
                             marginTop: 10,
                             marginBottom: 4,
-                            width: '22rem',
-                            fontSize: '2vh'
+                            width: '17rem',
+                            fontSize: '1.8vh',
+                            fontFamily: 'Inter_900Black'
                         }}
                     />
                     {/* [[[SUMBIT BUTTON]]] */}
                     <TouchableOpacity
                         onPress={() => handleConvert()}
                         style={{
-                            backgroundColor: '#2ec4b6',
+                            backgroundColor: '#ff1654',
                             padding: '1vh',
                             border: 'solid',
-                            borderColor: 'black',
+                            borderColor: 'white',
                             borderTopWidth: 4,
                             borderRightWidth: 4,
                             borderBottomWidth: 4,
                             borderLeftWidth: 0,
-                            borderTopRightRadius: 30,
+                            borderTopRightRadius: 10,
                             borderBottomRightRadius: 30,
                             marginTop: 10,
                             marginBottom: 4,
                             width: '6rem'
                         }}
                     >
-                        <Text style={{ color: 'black', marginTop: '2.5vh', fontSize: '2vh', fontFamily: 'Inter_900Black', alignSelf: 'center'}}>Convert</Text>
+                        <Text style={{ color: 'white', marginTop: '2.5vh', fontSize: '2vh', fontFamily: 'Inter_900Black', alignSelf: 'center'}}>SWAP!</Text>
                     </TouchableOpacity>
                 </View>
                         {result ? 
@@ -177,7 +179,11 @@ export const Convert = () => {
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                         >
-                            {isHovered && <Text style={{ position: 'absolute', color: 'rgba(0, 0, 0, 0.5)', fontSize: '2vh', margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center', left: 0, top: -5}}>Copy!</Text>}
+                            {isHovered && 
+                                <View style ={{backgroundColor: '#80ed99', padding: '1rem', borderRadius: 30}}>
+                                    <Text style={{ color: 'white', fontSize: '5vh', fontFamily: 'Inter_900Black', alignSelf: 'center', textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1}, textShadowRadius: 1}}>Copy!</Text>
+                                </View>
+                            }
                             <Text style={{color: 'black', fontSize: 30, marginTop: '4vh', marginBottom: '2vh', fontFamily: 'Inter_900Black', alignSelf: 'center'}}>{result}</Text>
                             {copiedText != '' && <Text style={{color: 'black', fontSize: 20, margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center'}}>Copied!</Text>}
                             <View style={{width: '18rem', alignSelf: 'center', height: '15rem', marginBottom: HeightRatio(20), borderRadius: 30, backgroundColor: `${result}`}}></View>
@@ -185,8 +191,8 @@ export const Convert = () => {
                         </>
                         :
                         <>
-                            <Text style={{color: 'rgba(0, 0, 0, 0.4)', fontSize: 30, margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center'}}>...result</Text>
-                            <View style={{width: '18rem', alignSelf: 'center', height: '15rem', marginBottom: HeightRatio(20), borderRadius: 30, borderWidth: 4, borderColor: 'rgba(0, 0, 0, 0.4)'}}></View>
+                            <Text style={{color: 'white', fontSize: 30, margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center'}}>...result</Text>
+                            <View style={{width: '18rem', alignSelf: 'center', height: '15rem', marginBottom: '2rem', borderRadius: 30, borderWidth: 4, borderColor: 'white'}}></View>
                         </>
                         }
                     
@@ -209,7 +215,6 @@ const styles = StyleSheet.create({
     },
     hoveredButton: {
       backgroundColor: '#eee',
-      borderRadius: 40,
       marginBottom: HeightRatio(20),
       width: '22rem',
       alignSelf: 'center'
