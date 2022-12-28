@@ -3,9 +3,6 @@ import { View, Text, TextInput, Button, Dimensions, PixelRatio, TouchableOpacity
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { GetColorGradient } from './utils/GetColorGradient';
 import * as Clipboard from 'expo-clipboard';
-import xIcon from './assets/x.png';
-
-
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -21,30 +18,11 @@ const scaleHeight = SCREEN_HEIGHT / 800;
 const WidthRatio = (size) => {
     const newSize = size * scaleWidth;
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-    //   if (Platform.OS === 'ios') {
-    //     return Math.round(PixelRatio.roundToNearestPixel(newSize))
-    //   } else {
-    //     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-    //   }
 }
 
 const HeightRatio = (size) => {
     const newSize = size * scaleHeight;
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-}
-
-
-
-const DisplayGradient = (props) => {
-    return (
-        <>
-            <Image source={props.image} style={{ ...Styling.background, opacity: 0.4 }} />
-            <LinearGradient
-                colors={props.gradient}
-                style={{ ...Styling.background, opacity: 0.5 }}
-            />
-        </>
-    )
 }
 
 export const Convert = () => {
@@ -53,31 +31,41 @@ export const Convert = () => {
     const [color, setColor] = useState('');
     const [gradient, setGradient] = useState([]);
     const [isHovered, setIsHovered] = useState(false);
+    const [isGradientHovered, setIsGradientHovered] = useState(false);
     const [copiedText, setCopiedText] = React.useState('');
-    let [fontsLoaded] = useFonts({
-        Inter_900Black,
-    });
+    const [gradientCopiedText, setGradientCopiedText] = React.useState('');
+    let [fontsLoaded] = useFonts({ Inter_900Black, });
+    if (!fontsLoaded) { return null; }
+
+
+
+    const handleGenerate = () => {
+        setGradient(GetColorGradient(color));
+    };
+
+    // Primary Color
+    const copyToClipboard = async () => {
+        await Clipboard.setStringAsync(result);
+        console.log("copyToClipboard")
+        fetchCopiedText();
+    };
     
-      if (!fontsLoaded) {
-        return null;
-      }
+    const fetchCopiedText = async () => {
+        const text = await Clipboard.getStringAsync();
+        setCopiedText(text);
+    };
 
+    // Gradient
+    const copyGradientToClipboard = async (input) => {
+        await Clipboard.setStringAsync(input);
+        console.log("copyToClipboard")
+        fetchGradientCopiedText();
+    };
     
-
-        const handleGenerate = () => {
-            setGradient(GetColorGradient(color));
-        };
-
-        const copyToClipboard = async () => {
-            await Clipboard.setStringAsync(result);
-            console.log("copyToClipboard")
-            fetchCopiedText();
-          };
-
-          const fetchCopiedText = async () => {
-            const text = await Clipboard.getStringAsync();
-            setCopiedText(text);
-          };
+    const fetchGradientCopiedText = async () => {
+        const text = await Clipboard.getStringAsync();
+        setGradientCopiedText(text);
+    };
 
     const handleConvert = () => {
         setCopiedText('')
@@ -89,7 +77,7 @@ export const Convert = () => {
             const a = 1; // Assume full opacity
             setResult(`rgba(${r}, ${g}, ${b}, ${a})`);
             setGradient(GetColorGradient(`rgba(${r}, ${g}, ${b}, ${a})`))
-          } else if (value.startsWith('rgba')) {
+        } else if (value.startsWith('rgba')) {
             setGradient(GetColorGradient(value))
             // Convert RGBA to HEX
             const parts = value.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
@@ -97,31 +85,46 @@ export const Convert = () => {
             const g = parseInt(parts[2]).toString(16).padStart(2, '0');
             const b = parseInt(parts[3]).toString(16).padStart(2, '0');
             setResult(`#${r}${g}${b}`);
-          }
+        }
     };
 
+
+
     return (
+
         <View>
-            <Text style={{ fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center', color: 'white' }}>Convert HEX or RGBA</Text>
-            
+
+            <Text style={{
+                fontFamily: 'Inter_900Black',
+                fontSize: '4vh',
+                alignSelf: 'center',
+                color: 'white'
+            }}>Convert HEX or RGBA</Text>
+
             <View style={{}}>
                 {value &&
-                    <TouchableOpacity onPress={() => {setValue('')}} style={{height: '4vh', width: '4vh', borderRadius: 10, position: 'absolute', zIndex: 10, backgroundColor: '#ff1654', top: '1vh'}}>
-                        <Image source={require('./assets/x.png')} style={{height: 15, width: 15, alignSelf: 'center', marginTop: '1.1vh', marginLeft: '0.3vh' }} />
+                    <TouchableOpacity
+                        onPress={() => { setValue('') }}
+                        style={{
+                            height: '4vh',
+                            width: '4vh',
+                            borderRadius: 10,
+                            position: 'absolute',
+                            zIndex: 10,
+                            backgroundColor: '#ff1654',
+                            top: '1vh'
+                        }}>
+                        <Image
+                            source={require('./assets/x.png')}
+                            style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.1vh', marginLeft: '0.3vh' }}
+                        />
                     </TouchableOpacity>
                 }
                 <View style={{ flexDirection: 'row', alignSelf: 'center', margin: 10 }}>
-                    {/* {value &&
-                        <TouchableOpacity onPress={() => {setValue('')}} style={{height: HeightRatio(60), width: HeightRatio(60), borderRadius: 10, backgroundColor: 'red', alignSelf: 'center', margin: 10}}>
-                            <Image source={require('./assets/x.png')} style={{height: 25, width: 25, alignSelf: 'center', marginTop: HeightRatio(20), marginLeft: WidthRatio(.5) }} />
-                        </TouchableOpacity>
-                    } */}
                     <TextInput
                         value={value}
                         onChangeText={setValue}
                         placeholder="Enter HEX or RGBA value"
-                        
-                        // multiline={2}
                         style={{
                             outline: 'none',
                             backgroundColor: 'transparent',
@@ -134,7 +137,7 @@ export const Convert = () => {
                             borderTopWidth: 4,
                             borderLeftWidth: 4,
                             borderBottomWidth: 4,
-                            borderRightWidth:0,
+                            borderRightWidth: 0,
                             borderTopLeftRadius: 30,
                             borderBottomLeftRadius: 10,
                             alignSelf: 'center',
@@ -145,7 +148,7 @@ export const Convert = () => {
                             fontFamily: 'Inter_900Black'
                         }}
                     />
-                    {/* [[[SUMBIT BUTTON]]] */}
+
                     <TouchableOpacity
                         onPress={() => handleConvert()}
                         style={{
@@ -164,12 +167,18 @@ export const Convert = () => {
                             width: '6rem'
                         }}
                     >
-                        <Text style={{ color: 'white', marginTop: '2.5vh', fontSize: '2vh', fontFamily: 'Inter_900Black', alignSelf: 'center'}}>SWAP!</Text>
+                        <Text style={{
+                            color: 'white',
+                            marginTop: '2.5vh',
+                            fontSize: '2vh',
+                            fontFamily: 'Inter_900Black',
+                            alignSelf: 'center'
+                        }}>SWAP!</Text>
                     </TouchableOpacity>
                 </View>
-                        {result ? 
-                        <>
-                        <TouchableOpacity 
+                {result ?
+                    <>
+                        <TouchableOpacity
                             onPress={copyToClipboard}
                             activeOpacity={1}
                             style={[
@@ -179,59 +188,138 @@ export const Convert = () => {
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                         >
-                            {isHovered && 
-                                <View style ={{backgroundColor: '#80ed99', padding: '1rem', borderRadius: 30}}>
-                                    <Text style={{ color: 'white', fontSize: '5vh', fontFamily: 'Inter_900Black', alignSelf: 'center', textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: {width: -1, height: 1}, textShadowRadius: 1}}>Copy!</Text>
+                            {/* {isHovered &&
+                                <View style={{ 
+                                    backgroundColor: '#80ed99', 
+                                    padding: '1rem', 
+                                    borderRadius: 30 
+                                }}>
+                                    <Text style={{ 
+                                        color: 'white', 
+                                        fontSize: '5vh', 
+                                        fontFamily: 'Inter_900Black', 
+                                        alignSelf: 'center', 
+                                        textShadowColor: 'rgba(0, 0, 0, 1)', 
+                                        textShadowOffset: { width: -1, height: 1 }, 
+                                        textShadowRadius: 1 
+                                    }}>Copy!</Text>
                                 </View>
-                            }
-                            <Text style={{color: 'black', fontSize: 30, marginTop: '4vh', marginBottom: '2vh', fontFamily: 'Inter_900Black', alignSelf: 'center'}}>{result}</Text>
-                            {copiedText != '' && <Text style={{color: 'black', fontSize: 20, margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center'}}>Copied!</Text>}
-                            <View style={{width: '18rem', alignSelf: 'center', height: '15rem', marginBottom: HeightRatio(20), borderRadius: 30, backgroundColor: `${result}`}}></View>
-                        </TouchableOpacity>
-                        </>
-                        :
-                        <>
-                            <Text style={{color: 'white', fontSize: 30, margin: HeightRatio(20), fontFamily: 'Inter_900Black', alignSelf: 'center'}}>...result</Text>
-                            <View style={{width: '18rem', alignSelf: 'center', height: '15rem', marginBottom: '2rem', borderRadius: 30, borderWidth: 4, borderColor: 'white'}}></View>
-                        </>
-                        }
-                    
-            </View>          
+                            } */}
 
-            {/* <View style={{}}>
+                            <Text style={{
+                                color: 'black',
+                                fontSize: 30,
+                                marginTop: '4vh',
+                                marginBottom: '2vh',
+                                fontFamily: 'Inter_900Black',
+                                alignSelf: 'center'
+                            }}>{result}</Text>
+
+                            {copiedText != '' &&
+                                <Text style={{
+                                    color: 'black',
+                                    fontSize: 20,
+                                    margin: HeightRatio(20),
+                                    fontFamily: 'Inter_900Black',
+                                    alignSelf: 'center'
+                                }}>Copied!</Text>
+                            }
+
+                            <View style={{
+                                width: '18rem',
+                                alignSelf: 'center',
+                                height: '15rem',
+                                marginBottom: HeightRatio(20),
+                                borderRadius: 30,
+                                backgroundColor: `${result}`
+                            }}></View>
+
+                        </TouchableOpacity>
+                    </>
+                    :
+                    <>
+                        <Text style={{
+                            color: 'white',
+                            fontSize: 30,
+                            margin: HeightRatio(20),
+                            fontFamily: 'Inter_900Black',
+                            alignSelf: 'center'
+                        }}>...result</Text>
+                        <View style={{
+                            width: '18rem',
+                            alignSelf: 'center',
+                            height: '15rem',
+                            marginBottom: '2rem',
+                            borderRadius: 30,
+                            borderWidth: 4,
+                            borderColor: 'white'
+                        }}></View>
+                    </>
+                }
+
+            </View>
+
+
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
                 {gradient.map((c, i) => (
-                    <View key={i} style={{ backgroundColor: c, height: 50 }} />
+                    <>
+                        <TouchableOpacity
+                            onPress={() => copyGradientToClipboard(c)} style={{ flexWrap: 'wrap', width: 75, margin: 4 }}
+                            onMouseEnter={() => setIsGradientHovered(true)}
+                            onMouseLeave={() => setIsGradientHovered(false)}
+                            key={i}
+                        >
+                            <View key={i} style={{ backgroundColor: c, height: 50, width: 75, borderRadius: 5 }}>
+                                {isGradientHovered &&
+                                <Text style={{
+                                    fontFamily: 'Inter_900Black',
+                                    alignSelf: 'center',
+                                    marginTop: '1rem'
+                                }}>{c}</Text>
+                                }
+                            </View>
+                        </TouchableOpacity>
+                    </>
                 ))}
-            </View> */}
-            
+                
+
+
+            </View>
+            <View style={{alignSelf: 'center'}}>
+                    <Text style={{color: 'white', fontFamily: 'Inter_900Black', fontSize: '5rem'}}>{gradientCopiedText}</Text>
+                </View>
+
+
+            <View style={{ height: 500 }} />
         </View>
+
     );
 };
 
 const styles = StyleSheet.create({
     button: {
-      padding: 10,
-      borderRadius: 5,
+        padding: 10,
+        borderRadius: 5,
     },
     hoveredButton: {
-      backgroundColor: '#eee',
-      marginBottom: HeightRatio(20),
-      width: '22rem',
-      alignSelf: 'center'
+        backgroundColor: 'rgba(255, 255, 255, 0.75)',
+        marginBottom: HeightRatio(20),
+        width: '22rem',
+        alignSelf: 'center'
     },
     normalButton: {
-      backgroundColor: '#fff',
-      marginBottom: HeightRatio(20),
-      width: '22rem',
-      alignSelf: 'center'
+        backgroundColor: '#fff',
+        marginBottom: HeightRatio(20),
+        width: '22rem',
+        alignSelf: 'center'
     },
     buttonText: {
-      color: '#000',
-      fontSize: 18,
+        color: '#000',
+        fontSize: 18,
     },
-  });
-  
-  
-  
-  
-  
+});
+
+
+
+
+

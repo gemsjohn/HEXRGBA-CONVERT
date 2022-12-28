@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Dimensions, PixelRatio, Image } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, PixelRatio, Image, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import { Convert } from './Convert'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
@@ -32,9 +31,10 @@ const HeightRatio = (size) => {
 export default function App() {
   return (
     <>
+
       <LinearGradient
         colors={['#181818', '#000000']}
-        style={{ opacity: 1, width: windowWidth, alignSelf: 'center', flex: 1 }}
+        style={{ opacity: 1, width: '100%', alignSelf: 'center', flex: 1 }}
       // start={[0.0, 0.5]} end={[1.0, 0.5]}
       >
         <View >
@@ -43,14 +43,18 @@ export default function App() {
             <Text style={{ color: '#b892ff', alignSelf: 'center', marginTop: '0.8rem', fontSize: '2rem', fontWeight: 'bold', fontFamily: 'Inter_900Black', }}>HEX to RGBA Pro</Text>
           </View>
 
-          <View style={styles.container}>
-            <Convert />
-            <StatusBar style="auto" />
+          <View style={{}}>
+            <SafeAreaView style={styles.container}>
+              <ScrollView style={{}} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+              <Convert />
+              </ScrollView>
+            </SafeAreaView>
+            {/* <StatusBar style="auto" /> */}
           </View>
 
         </View>
       </LinearGradient>
-      <WebView
+      {/* <WebView
         source={{
           uri: 'https://hextorgbapro.com/index.html',
         }}
@@ -58,24 +62,24 @@ export default function App() {
         javaScriptEnabled={true}
         domStorageEnabled={true}
         injectedJavaScript={`
-    (function() {
-      // Add your AdSense code here
-      var script = document.createElement('script');
-      script.async = true;
-      script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-      var ins = document.createElement('ins');
-      ins.className = 'adsbygoogle';
-      ins.style.display = 'block';
-      ins.setAttribute('data-ad-client', 'ca-pub-3255964932603196');
-      ins.setAttribute('data-ad-slot', '');
-      ins.setAttribute('data-ad-format', 'auto');
-      ins.setAttribute('data-full-width-responsive', 'true');
-      document.body.appendChild(script);
-      document.body.appendChild(ins);
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    })();
-  `}
-      />
+        (function() {
+          // Add your AdSense code here
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+          var ins = document.createElement('ins');
+          ins.className = 'adsbygoogle';
+          ins.style.display = 'block';
+          ins.setAttribute('data-ad-client', 'ca-pub-3255964932603196');
+          ins.setAttribute('data-ad-slot', '');
+          ins.setAttribute('data-ad-format', 'auto');
+          ins.setAttribute('data-full-width-responsive', 'true');
+          document.body.appendChild(script);
+          document.body.appendChild(ins);
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        })();
+      `}
+      /> */}
     </>
   );
 }
