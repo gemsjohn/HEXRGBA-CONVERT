@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, PixelRatio, Image, SafeAreaView, ScrollView, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, PixelRatio, Image, SafeAreaView, ScrollView, StatusBar, Platform } from 'react-native';
 import { Convert } from './Convert'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
@@ -54,32 +54,34 @@ export default function App() {
 
         </View>
       </LinearGradient>
-      {/* <WebView
-        source={{
-          uri: 'https://hextorgbapro.com/index.html',
-        }}
-        style={{ height: '100%' }}
-        javaScriptEnabled={true}
-        domStorageEnabled={true}
-        injectedJavaScript={`
-        (function() {
-          // Add your AdSense code here
-          var script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-          var ins = document.createElement('ins');
-          ins.className = 'adsbygoogle';
-          ins.style.display = 'block';
-          ins.setAttribute('data-ad-client', 'ca-pub-3255964932603196');
-          ins.setAttribute('data-ad-slot', '');
-          ins.setAttribute('data-ad-format', 'auto');
-          ins.setAttribute('data-full-width-responsive', 'true');
-          document.body.appendChild(script);
-          document.body.appendChild(ins);
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        })();
-      `}
-      /> */}
+      {Platform.OS === 'web' &&
+        <WebView
+          source={{
+            uri: 'https://hextorgbapro.com/index.html',
+          }}
+          style={{ height: '100%' }}
+          javaScriptEnabled={true}
+          domStorageEnabled={true}
+          injectedJavaScript={`
+          (function() {
+            // Add your AdSense code here
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+            var ins = document.createElement('ins');
+            ins.className = 'adsbygoogle';
+            ins.style.display = 'block';
+            ins.setAttribute('data-ad-client', 'ca-pub-3255964932603196');
+            ins.setAttribute('data-ad-slot', '');
+            ins.setAttribute('data-ad-format', 'auto');
+            ins.setAttribute('data-full-width-responsive', 'true');
+            document.body.appendChild(script);
+            document.body.appendChild(ins);
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          })();
+        `}
+        />
+      }
     </>
   );
 }
