@@ -146,7 +146,7 @@ export const Convert = () => {
                     <TouchableOpacity
                         onPress={() => handleConvert()}
                         style={{
-                            backgroundColor: 'rgba(170, 204, 0, 0.5)',
+                            backgroundColor: '#2ec4b6',
                             padding: 9,
                             border: 'solid',
                             borderColor: 'black',
@@ -188,7 +188,7 @@ export const Convert = () => {
                         </>
                         }
                     
-            </View>
+            </View>          
 
             {/* <View style={{}}>
                 {gradient.map((c, i) => (

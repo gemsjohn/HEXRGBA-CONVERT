@@ -33,7 +33,8 @@ const DisplayGradient = () => {
   return (
     <>
       <LinearGradient
-        colors={['#5390d9', '#7400b8']}
+        // colors={['#5390d9', '#7400b8']}
+        colors={['#ffff3f', '#000814']}
         style={{ opacity: 0.5, height: HeightRatio(100), width: windowWidth, borderBottomRightRadius: 90, borderBottomLeftRadius: 90 }}
         start={[0.0, 0.5]} end={[1.0, 0.5]}
       >
@@ -47,7 +48,11 @@ const DisplayGradient = () => {
 export default function App() {
   return (
     <>
-    <DisplayGradient />
+    {/* <DisplayGradient /> */}
+    <View style={{backgroundColor: '#ffff3f', height: HeightRatio(100), width: windowWidth, borderBottomRightRadius: 90, borderBottomLeftRadius: 90}}>
+        <Text style={{color: '#000814', alignSelf: 'center', marginTop: HeightRatio(10), fontSize: 70, fontWeight: 'bold'}}>HEX To RGBA Pro</Text>
+        {/* <View style={{borderBottomWidth: 6, borderBottomColor: '#000814', width: windowWidth/3, alignSelf: 'center'}}></View> */}
+    </View>
     <View style={styles.container}>
       <Convert />
       <StatusBar style="auto" />
