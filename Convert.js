@@ -139,7 +139,7 @@ export const Convert = () => {
                             alignSelf: 'center',
                             marginTop: 10,
                             marginBottom: 4,
-                            width: '20rem',
+                            width: '22rem',
                             fontSize: '2vh'
                         }}
                     />
