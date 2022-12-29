@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Dimensions, PixelRatio, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, Button, Dimensions, PixelRatio, TouchableOpacity, StyleSheet, Image, Color } from 'react-native';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { GetColorGradient } from './utils/GetColorGradient';
 import * as Clipboard from 'expo-clipboard';
+import { Palette } from './Palette';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -49,7 +50,7 @@ export const Convert = () => {
         console.log("copyToClipboard")
         fetchCopiedText();
     };
-    
+
     const fetchCopiedText = async () => {
         const text = await Clipboard.getStringAsync();
         setCopiedText(text);
@@ -61,7 +62,7 @@ export const Convert = () => {
         console.log("copyToClipboard")
         fetchGradientCopiedText();
     };
-    
+
     const fetchGradientCopiedText = async () => {
         const text = await Clipboard.getStringAsync();
         setGradientCopiedText(text);
@@ -120,8 +121,8 @@ export const Convert = () => {
                         />
                     </TouchableOpacity>
                 }
-                <View style={{ flexDirection: 'row', alignSelf: 'center', margin: 10 }}>
-                    <TextInput
+                <View style={{ flexDirection: 'column', alignSelf: 'center', margin: 10 }}>
+                    {/* <TextInput
                         value={value}
                         onChangeText={setValue}
                         placeholder="Enter HEX or RGBA value"
@@ -147,9 +148,9 @@ export const Convert = () => {
                             fontSize: '1.8vh',
                             fontFamily: 'Inter_900Black'
                         }}
-                    />
+                    /> */}
 
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         onPress={() => handleConvert()}
                         style={{
                             backgroundColor: '#ff1654',
@@ -174,9 +175,62 @@ export const Convert = () => {
                             fontFamily: 'Inter_900Black',
                             alignSelf: 'center'
                         }}>SWAP!</Text>
+                    </TouchableOpacity> */}
+                    <TextInput
+                        value={value}
+                        onChangeText={setValue}
+                        placeholder="Enter HEX or RGBA value"
+                        style={{
+                            outline: 'none',
+                            backgroundColor: 'transparent',
+                            color: 'white',
+                            display: 'flex',
+                            justifyContent: 'flex-start',
+                            padding: 30,
+                            border: 'solid',
+                            borderColor: 'white',
+                            borderWidth: 4,
+                            borderBottomWidth: 2,
+                            borderTopLeftRadius: 30,
+                            borderBottomLeftRadius: 0,
+                            borderTopRightRadius: 30,
+                            borderBottomRightRadius: 0,
+                            alignSelf: 'center',
+                            marginTop: 10,
+                            // marginBottom: 4,
+                            width: '20rem',
+                            fontSize: '1.8vh',
+                            fontFamily: 'Inter_900Black'
+                        }}
+                    />
+                    <TouchableOpacity
+                        onPress={() => handleConvert()}
+                        style={{
+                            backgroundColor: '#ff1654',
+                            padding: '1vh',
+                            border: 'solid',
+                            borderColor: 'white',
+                            borderWidth: 4,
+                            borderTopWidth: 2,
+                            borderTopLeftRadius: 0,
+                            borderBottomLeftRadius: 30,
+                            borderTopRightRadius: 0,
+                            borderBottomRightRadius: 30,
+                            // marginTop: 10,
+                            marginBottom: 4,
+                            width: '20rem'
+                        }}
+                    >
+                        <Text style={{
+                            color: 'white',
+                            marginTop: '0.5vh',
+                            fontSize: '2vh',
+                            fontFamily: 'Inter_900Black',
+                            alignSelf: 'center'
+                        }}>SWAP!</Text>
                     </TouchableOpacity>
                 </View>
-                {result ?
+                {result &&
                     <>
                         <TouchableOpacity
                             onPress={copyToClipboard}
@@ -218,25 +272,7 @@ export const Convert = () => {
                             }}></View>
 
                         </TouchableOpacity>
-                    </>
-                    :
-                    <>
-                        <Text style={{
-                            color: 'white',
-                            fontSize: 30,
-                            margin: HeightRatio(20),
-                            fontFamily: 'Inter_900Black',
-                            alignSelf: 'center'
-                        }}>...result</Text>
-                        <View style={{
-                            width: '18rem',
-                            alignSelf: 'center',
-                            height: '15rem',
-                            marginBottom: '2rem',
-                            borderRadius: 30,
-                            borderWidth: 4,
-                            borderColor: 'white'
-                        }}></View>
+
                     </>
                 }
 
@@ -254,26 +290,26 @@ export const Convert = () => {
                         >
                             <View key={i} style={{ backgroundColor: c, height: 50, width: 75, borderRadius: 5 }}>
                                 {isGradientHovered &&
-                                <Text style={{
-                                    fontFamily: 'Inter_900Black',
-                                    alignSelf: 'center',
-                                    marginTop: '1rem'
-                                }}>{c}</Text>
+                                    <Text style={{
+                                        fontFamily: 'Inter_900Black',
+                                        alignSelf: 'center',
+                                        marginTop: '1rem'
+                                    }}>{c}</Text>
                                 }
                             </View>
                         </TouchableOpacity>
                     </>
                 ))}
-                
-
-
             </View>
-            <View style={{alignSelf: 'center', flexDirection: 'column'}}>
-                    <Text style={{color: 'white', fontFamily: 'Inter_900Black', fontSize: '5rem'}}>{gradientCopiedText}</Text>
-                    {gradientCopiedText != '' &&
-                        <Text style={{color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center'}}>Copied!</Text>
-                    }
-                </View>
+            <View style={{ alignSelf: 'center', flexDirection: 'column' }}>
+                <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '5rem' }}>{gradientCopiedText}</Text>
+                {gradientCopiedText != '' &&
+                    <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center' }}>Copied!</Text>
+                }
+            </View>
+            {/* <View>
+                <Palette />
+            </View> */}
 
 
             <View style={{ height: 500 }} />
