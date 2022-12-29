@@ -93,169 +93,178 @@ export const Convert = () => {
 
     return (
 
-        <View>
+        <View style={{flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center'}}>
+            <View style={{marginLeft: '3rem', marginRight: '3rem', marginTop: '3rem'}}>
+                <Text style={{
+                    fontFamily: 'Inter_900Black',
+                    fontSize: '4vh',
+                    alignSelf: 'center',
+                    color: 'white'
+                }}>Convert HEX or RGBA</Text>
 
-            <Text style={{
-                fontFamily: 'Inter_900Black',
-                fontSize: '4vh',
-                alignSelf: 'center',
-                color: 'white'
-            }}>Convert HEX or RGBA</Text>
-
-            <View style={{}}>
-                {value &&
-                    <TouchableOpacity
-                        onPress={() => { setValue('') }}
-                        style={{
-                            height: '4vh',
-                            width: '4vh',
-                            borderRadius: 10,
-                            position: 'absolute',
-                            zIndex: 10,
-                            backgroundColor: '#ff1654',
-                            top: '1vh'
-                        }}>
-                        <Image
-                            source={require('./assets/x.png')}
-                            style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.1vh', marginLeft: '0.3vh' }}
-                        />
-                    </TouchableOpacity>
-                }
-                <View style={{ flexDirection: 'column', alignSelf: 'center', margin: 10 }}>
-                    <TextInput
-                        value={value}
-                        onChangeText={setValue}
-                        placeholder="Enter HEX or RGBA value"
-                        style={{
-                            outline: 'none',
-                            backgroundColor: 'transparent',
-                            color: 'white',
-                            display: 'flex',
-                            justifyContent: 'flex-start',
-                            padding: 30,
-                            border: 'solid',
-                            borderColor: 'white',
-                            borderWidth: 4,
-                            borderBottomWidth: 2,
-                            borderTopLeftRadius: 30,
-                            borderBottomLeftRadius: 0,
-                            borderTopRightRadius: 30,
-                            borderBottomRightRadius: 0,
-                            alignSelf: 'center',
-                            marginTop: 10,
-                            // marginBottom: 4,
-                            width: '20rem',
-                            fontSize: '1.8vh',
-                            fontFamily: 'Inter_900Black'
-                        }}
-                    />
-                    <TouchableOpacity
-                        onPress={() => handleConvert()}
-                        style={{
-                            backgroundColor: '#ff1654',
-                            padding: '1vh',
-                            border: 'solid',
-                            borderColor: 'white',
-                            borderWidth: 4,
-                            borderTopWidth: 2,
-                            borderTopLeftRadius: 0,
-                            borderBottomLeftRadius: 30,
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 30,
-                            // marginTop: 10,
-                            marginBottom: 4,
-                            width: '20rem'
-                        }}
-                    >
-                        <Text style={{
-                            color: 'white',
-                            marginTop: '0.5vh',
-                            fontSize: '2vh',
-                            fontFamily: 'Inter_900Black',
-                            alignSelf: 'center'
-                        }}>SWAP!</Text>
-                    </TouchableOpacity>
-                </View>
-                {result &&
-                    <>
+                <View style={{}}>
+                    {value &&
                         <TouchableOpacity
-                            onPress={copyToClipboard}
-                            activeOpacity={1}
-                            style={[
-                                styles.button,
-                                isHovered ? styles.hoveredButton : styles.normalButton
-                            ]}
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
+                            onPress={() => { 
+                                setValue('');  
+                                setResult('');
+                                setGradient([]);
+                                setGradientCopiedText('');
+                            }}
+                            style={{
+                                height: '4vh',
+                                width: '4vh',
+                                borderRadius: 10,
+                                position: 'absolute',
+                                zIndex: 10,
+                                backgroundColor: '#ff1654',
+                                top: '1vh'
+                            }}>
+                            <Image
+                                source={require('./assets/x.png')}
+                                style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.3vh', marginLeft: '0.1vh' }}
+                            />
+                        </TouchableOpacity>
+                    }
+                    <View style={{ flexDirection: 'column', alignSelf: 'center', margin: 10 }}>
+                        <TextInput
+                            value={value}
+                            onChangeText={setValue}
+                            placeholder="Enter HEX or RGBA value"
+                            style={{
+                                outline: 'none',
+                                backgroundColor: 'transparent',
+                                color: 'white',
+                                display: 'flex',
+                                justifyContent: 'flex-start',
+                                padding: 30,
+                                border: 'solid',
+                                borderColor: 'white',
+                                borderWidth: 4,
+                                borderBottomWidth: 2,
+                                borderTopLeftRadius: 30,
+                                borderBottomLeftRadius: 0,
+                                borderTopRightRadius: 30,
+                                borderBottomRightRadius: 0,
+                                alignSelf: 'center',
+                                marginTop: 10,
+                                // marginBottom: 4,
+                                width: '20rem',
+                                fontSize: '1.8vh',
+                                fontFamily: 'Inter_900Black'
+                            }}
+                        />
+                        <TouchableOpacity
+                            onPress={() => handleConvert()}
+                            style={{
+                                backgroundColor: '#ff1654',
+                                padding: '1vh',
+                                border: 'solid',
+                                borderColor: 'white',
+                                borderWidth: 4,
+                                borderTopWidth: 2,
+                                borderTopLeftRadius: 0,
+                                borderBottomLeftRadius: 30,
+                                borderTopRightRadius: 0,
+                                borderBottomRightRadius: 30,
+                                // marginTop: 10,
+                                marginBottom: 4,
+                                width: '20rem'
+                            }}
                         >
-
                             <Text style={{
-                                color: 'black',
-                                fontSize: 30,
-                                marginTop: '0.5rem',
-                                marginBottom: '2vh',
+                                color: 'white',
+                                marginTop: '0.5vh',
+                                fontSize: '2vh',
                                 fontFamily: 'Inter_900Black',
                                 alignSelf: 'center'
-                            }}>{result}</Text>
+                            }}>SWAP!</Text>
+                        </TouchableOpacity>
+                    </View>
+                    {result &&
+                        <>
+                            <TouchableOpacity
+                                onPress={copyToClipboard}
+                                activeOpacity={1}
+                                style={[
+                                    styles.button,
+                                    isHovered ? styles.hoveredButton : styles.normalButton
+                                ]}
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}
+                            >
 
-                            {copiedText != '' &&
                                 <Text style={{
                                     color: 'black',
-                                    fontSize: 20,
-                                    margin: '0.5rem',
+                                    fontSize: 30,
+                                    marginTop: '0.5rem',
+                                    marginBottom: '2vh',
                                     fontFamily: 'Inter_900Black',
                                     alignSelf: 'center'
-                                }}>Copied!</Text>
-                            }
+                                }}>{result}</Text>
 
-                            <View style={{
-                                width: '18rem',
-                                alignSelf: 'center',
-                                height: '15rem',
-                                marginBottom: HeightRatio(20),
-                                borderRadius: 30,
-                                backgroundColor: `${result}`
-                            }}></View>
-
-                        </TouchableOpacity>
-
-                    </>
-                }
-
-            </View>
-
-
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
-                {gradient.map((c, i) => (
-                    <>
-                        <TouchableOpacity
-                            onPress={() => copyGradientToClipboard(c)} style={{ flexWrap: 'wrap', width: 75, margin: 4 }}
-                            onMouseEnter={() => setIsGradientHovered(true)}
-                            onMouseLeave={() => setIsGradientHovered(false)}
-                            key={i}
-                        >
-                            <View key={i} style={{ backgroundColor: c, height: 50, width: 75, borderRadius: 5 }}>
-                                {isGradientHovered &&
+                                {copiedText != '' &&
                                     <Text style={{
+                                        color: 'black',
+                                        fontSize: 20,
+                                        margin: '0.5rem',
                                         fontFamily: 'Inter_900Black',
-                                        alignSelf: 'center',
-                                        marginTop: '1rem'
-                                    }}>{c}</Text>
+                                        alignSelf: 'center'
+                                    }}>Copied!</Text>
                                 }
-                            </View>
-                        </TouchableOpacity>
-                    </>
-                ))}
+
+                                <View style={{
+                                    width: '18rem',
+                                    alignSelf: 'center',
+                                    height: '15rem',
+                                    marginBottom: HeightRatio(20),
+                                    borderRadius: 30,
+                                    backgroundColor: `${result}`
+                                }}></View>
+
+                            </TouchableOpacity>
+
+                        </>
+                    }
+
+                </View>
+
+
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
+                    {gradient.map((c, i) => (
+                        <>
+                            <TouchableOpacity
+                                onPress={() => copyGradientToClipboard(c)} style={{ flexWrap: 'wrap', width: 75, margin: 4 }}
+                                onMouseEnter={() => setIsGradientHovered(true)}
+                                onMouseLeave={() => setIsGradientHovered(false)}
+                                key={i}
+                            >
+                                <View key={i} style={{ backgroundColor: c, height: 50, width: 75, borderRadius: 5 }}>
+                                    {/* {isGradientHovered &&
+                                        <Text key={i} style={{
+                                            fontFamily: 'Inter_900Black',
+                                            alignSelf: 'center',
+                                            marginTop: '1rem'
+                                        }}>{c}</Text>
+                                    } */}
+                                </View>
+                            </TouchableOpacity>
+                        </>
+                    ))}
+                </View>
+                <View style={{ alignSelf: 'center', flexDirection: 'column' }}>
+                    <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '2.2rem' }}>{gradientCopiedText}</Text>
+                    {gradientCopiedText != '' &&
+                        <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center' }}>Copied!</Text>
+                    }
+                </View>
             </View>
-            <View style={{ alignSelf: 'center', flexDirection: 'column' }}>
-                <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '5rem' }}>{gradientCopiedText}</Text>
-                {gradientCopiedText != '' &&
-                    <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center' }}>Copied!</Text>
-                }
+
+            <View style={{marginLeft: '3rem', marginRight: '3rem', marginTop: '3rem'}}>
+                <View style={{}}>
+                    <Palette />
+                </View>
             </View>
-            {/* <View>
-                <Palette />
-            </View> */}
 
 
             

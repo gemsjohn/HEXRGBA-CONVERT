@@ -31,7 +31,7 @@ function HomeScreen({ navigation }) {
   return (
     <LinearGradient
         colors={['#181818', '#000000']}
-        style={{ opacity: 1, width: '100rem', alignSelf: 'center'}}
+        style={{ opacity: 1, width: '100%', alignSelf: 'center'}}
       // start={[0.0, 0.5]} end={[1.0, 0.5]}
       >
         <View >
@@ -65,7 +65,7 @@ function BlogScreen({ navigation }) {
   return (
     <LinearGradient
         colors={['#181818', '#000000']}
-        style={{ opacity: 1, width: '100%', alignSelf: 'center', flex: 1, height: '100%' }}
+        style={{ opacity: 1, width: '100%', alignSelf: 'center' }}
       // start={[0.0, 0.5]} end={[1.0, 0.5]}
       >
         <View >
@@ -87,6 +87,8 @@ function BlogScreen({ navigation }) {
             </SafeAreaView>
             {/* <StatusBar style="auto" /> */}
           </View>
+
+          <View style={{ height: '100rem' }} />
 
         </View>
       </LinearGradient>
