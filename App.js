@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, Dimensions, PixelRatio, Image, SafeAreaView, ScrollView, StatusBar, Platform, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Dimensions, PixelRatio, Image, SafeAreaView, ScrollView, StatusBar, Platform, TouchableOpacity, RefreshControl } from 'react-native';
 import { Convert } from './Convert'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
@@ -27,7 +28,19 @@ const HeightRatio = (size) => {
   return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
 }
 
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 function HomeScreen({ navigation }) {
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
+
   return (
     <LinearGradient
         colors={['#181818', '#000000']}
@@ -41,13 +54,22 @@ function HomeScreen({ navigation }) {
           </View>
           <View style={{alignSelf: 'center', }}>
             <TouchableOpacity onPress={() => navigation.navigate('Blog')} style={{backgroundColor: 'rgba(255, 255, 255, 0.05)', height: '3rem', marginTop: '1rem', borderRadius: '1rem'}}>
-              <Text style={{color: 'white', fontSize: 20, margin: '1rem', fontSize: '1.8vh', fontFamily: 'Inter_900Black'}}>BLOG</Text>
+              <Text style={{color: 'white', fontSize: 20, margin: '1rem', fontSize: '1.8vh', fontFamily: 'Inter_900Black'}}>INFO</Text>
             </TouchableOpacity>
           </View>
 
           <View style={{}}>
             <SafeAreaView style={styles.container}>
-              <ScrollView style={{}} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+              <ScrollView 
+                style={{}}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                    enabled={true}
+                  />
+                } 
+              >
               <Convert />
               </ScrollView>
             </SafeAreaView>

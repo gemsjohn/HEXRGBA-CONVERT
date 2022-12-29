@@ -4,6 +4,7 @@ import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { GetColorGradient } from './utils/GetColorGradient';
 import * as Clipboard from 'expo-clipboard';
 import { Palette } from './Palette';
+import { EyeDropper } from './Eyedropper';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -178,7 +179,7 @@ export const Convert = () => {
                                 fontSize: '2vh',
                                 fontFamily: 'Inter_900Black',
                                 alignSelf: 'center'
-                            }}>SWAP!</Text>
+                            }}>Swap!</Text>
                         </TouchableOpacity>
                     </View>
                     {result &&
@@ -230,7 +231,7 @@ export const Convert = () => {
                 </View>
 
 
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
                     {gradient.map((c, i) => (
                         <>
                             <TouchableOpacity
@@ -265,6 +266,13 @@ export const Convert = () => {
                     <Palette />
                 </View>
             </View>
+
+            {/* <View style={{marginLeft: '3rem', marginRight: '3rem', marginTop: '3rem'}}>
+                <View style={{}}>
+                <EyeDropper/>
+                </View>
+            </View> */}
+            
 
 
             

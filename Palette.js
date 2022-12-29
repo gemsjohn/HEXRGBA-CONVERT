@@ -23,6 +23,9 @@ export const Palette = () => {
         setGradientCopiedText(text);
     };
 
+    
+      
+
     function generateGoldenRatioPalette(inputColor) {
 
         if (inputColor.startsWith('#')) {
@@ -36,14 +39,37 @@ export const Palette = () => {
             const phi = (1 + Math.sqrt(5)) / 2;
 
             // Generate 5 colors based on the golden ratio
-            const color1 = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
-            const color2 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
-            const color3 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b / phi).toString(16).padStart(2, '0')}`;
-            const color4 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
-            const color5 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
+            const color1 = `#${inputColor.substring(1, 7)}`;
+            const color2 = `#${Math.round(r * phi).toString(16)}${Math.round(g * phi).toString(16)}${Math.round(b * phi).toString(16)}`;
+            const color3 = `#${Math.round(r / phi).toString(16)}${Math.round(g / phi).toString(16)}${Math.round(b / phi).toString(16)}`;
+            const color4 = `#${Math.round(r * phi).toString(16)}${Math.round(g / phi).toString(16)}${Math.round(b * phi).toString(16)}`;
+            const color5 = `#${Math.round(r / phi).toString(16)}${Math.round(g * phi).toString(16)}${Math.round(b / phi).toString(16)}`;
 
+            function padHex(hex) {
+                // Check if the HEX value is less than six characters long
+                if (hex.length < 7) {
+                  // Pad the HEX value with leading zeros
+                  return `#${hex.substring(1, 7).padStart(6, '0')}`;
+                }
+                // Check if the HEX value is longer than six characters
+                else if (hex.length > 7) {
+                  // Trim the HEX value to six characters
+                  return `#${hex.substring(1, 7)}`;
+                }
+                // Otherwise, return the HEX value as-is
+                return hex;
+            }
+              
 
-            return [color1, color2, color3, color4, color5];
+            // Check the length of each color and pad with leading zeros if necessary
+            const paddedColor1 = padHex(color1);
+            const paddedColor2 = padHex(color2);
+            const paddedColor3 = padHex(color3);
+            const paddedColor4 = padHex(color4);
+            const paddedColor5 = padHex(color5);
+
+            // Return the array of padded colors
+            return [paddedColor1, paddedColor2, paddedColor3, paddedColor4, paddedColor5];
 
         } else if (inputColor.startsWith('rgba')) {
             console.log("STARTS WITH")
@@ -68,7 +94,32 @@ export const Palette = () => {
             const color3 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b / phi).toString(16).padStart(2, '0')}`;
             const color4 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
             const color5 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
-            return [color1, color2, color3, color4, color5];
+            
+            function padHex(hex) {
+                // Check if the HEX value is less than six characters long
+                if (hex.length < 7) {
+                  // Pad the HEX value with leading zeros
+                  return `#${hex.substring(1, 7).padStart(6, '0')}`;
+                }
+                // Check if the HEX value is longer than six characters
+                else if (hex.length > 7) {
+                  // Trim the HEX value to six characters
+                  return `#${hex.substring(1, 7)}`;
+                }
+                // Otherwise, return the HEX value as-is
+                return hex;
+            }
+              
+
+            // Check the length of each color and pad with leading zeros if necessary
+            const paddedColor1 = padHex(color1);
+            const paddedColor2 = padHex(color2);
+            const paddedColor3 = padHex(color3);
+            const paddedColor4 = padHex(color4);
+            const paddedColor5 = padHex(color5);
+
+            // Return the array of padded colors
+            return [paddedColor1, paddedColor2, paddedColor3, paddedColor4, paddedColor5];
         }
     }
 
@@ -178,16 +229,16 @@ export const Palette = () => {
 
 
 
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
-                    {palette.map((color, i) => (
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center', backgroundColor: '#fff', borderRadius: '0.5rem' }}>
+                    {palette.map((color) => (
                         <>
                             <TouchableOpacity
                                 onPress={() => copyGradientToClipboard(color)} style={{ flexWrap: 'wrap', width: 75, margin: 4 }}
                                 onMouseEnter={() => setIsGradientHovered(true)}
                                 onMouseLeave={() => setIsGradientHovered(false)}
-                                key={i}
+                                key={color}
                             >
-                                <View key={i} style={{ backgroundColor: color, height: 50, width: 75, borderRadius: 5 }} />
+                                <View key={color} style={{ backgroundColor: color, height: 50, width: 75, borderRadius: 5 }} />
                             </TouchableOpacity>
                         </>
                     ))}
