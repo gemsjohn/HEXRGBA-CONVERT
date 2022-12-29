@@ -258,7 +258,7 @@ export const Convert = () => {
             </View> */}
 
 
-            <View style={{ height: 500 }} />
+            
         </View>
 
     );
