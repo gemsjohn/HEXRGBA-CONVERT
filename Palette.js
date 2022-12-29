@@ -63,11 +63,11 @@ export const Palette = () => {
             const phi = (1 + Math.sqrt(5)) / 2;
 
             // Generate 5 colors based on the golden ratio
-            const color1 = `rgba(${r}, ${g}, ${b}, ${a})`;
-            const color2 = `rgba(${Math.round(r * phi)}, ${Math.round(g * phi)}, ${Math.round(b * phi)}, ${a})`;
-            const color3 = `rgba(${Math.round(r / phi)}, ${Math.round(g / phi)}, ${Math.round(b / phi)}, ${a})`;
-            const color4 = `rgba(${Math.round(r * phi)}, ${Math.round(g / phi)}, ${Math.round(b * phi)}, ${a})`;
-            const color5 = `rgba(${Math.round(r / phi)}, ${Math.round(g * phi)}, ${Math.round(b / phi)}, ${a})`;
+            const color1 = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+            const color2 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
+            const color3 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b / phi).toString(16).padStart(2, '0')}`;
+            const color4 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
+            const color5 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
             return [color1, color2, color3, color4, color5];
         }
     }
