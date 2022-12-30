@@ -50,8 +50,9 @@ function HomeScreen({ navigation }) {
       >
         <View >
 
-          <View style={{ height: '4rem', borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '50vw', alignSelf: 'center' }}>
-            <Text style={{ color: 'white', alignSelf: 'center', marginTop: '0.8rem', fontSize: '2rem', fontWeight: 'bold', fontFamily: 'Inter_900Black', }}>HEX to RGBA Pro</Text>
+          <View style={{ height: '4rem', width: '90vw', alignSelf: 'center' }}>
+            <Text style={{ color: 'white', alignSelf: 'center', marginTop: '0.8rem', fontSize: '4vh', fontWeight: 'bold', fontFamily: 'Inter_900Black', }}>HEX to RGBA <strong style={{color: '#ff9f1c'}}>Pro</strong></Text>
+            <View style={{borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '60vw', alignSelf: 'center'}} />
           </View>
           {/* <View style={{alignSelf: 'center', }}>
             <TouchableOpacity onPress={() => navigation.navigate('Blog')} style={{backgroundColor: 'rgba(255, 255, 255, 0.05)', height: '3rem', marginTop: '1rem', borderRadius: '1rem'}}>
