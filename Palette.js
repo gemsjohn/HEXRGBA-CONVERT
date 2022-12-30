@@ -143,28 +143,6 @@ export const Palette = () => {
 
             <View style={{}}>
                 {inputColor &&
-                    // <TouchableOpacity
-                    //     onPress={() => {
-                    //         setInputColor('');
-                    //         setInputColor('');
-                    //         setPalette([]);
-                    //         setGradientCopiedText('');
-                    //     }}
-                    //     style={{
-                    //         height: '4vh',
-                    //         width: '4vh',
-                    //         borderRadius: 10,
-                    //         position: 'absolute',
-                    //         zIndex: 10,
-                    //         backgroundColor: '#ff1654',
-                    //         top: '1vh',
-                    //         left: '-5vh'
-                    //     }}>
-                    //     <Image
-                    //         source={require('./assets/x.png')}
-                    //         style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.3vh', marginLeft: '0.1vh' }}
-                    //     />
-                    // </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => {
                             setInputColor('');
@@ -180,7 +158,7 @@ export const Palette = () => {
                             zIndex: 10,
                             backgroundColor: '#ff1654',
                             top: '1vh',
-                            left: '0.5vh'
+                            left: '-5vh'
                         }}>
                         <Image
                             source={require('./assets/x.png')}
