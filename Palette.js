@@ -9,7 +9,7 @@ export const Palette = () => {
     const [gradientCopiedText, setGradientCopiedText] = React.useState('');
     const [isGradientHovered, setIsGradientHovered] = useState(false);
 
-    
+
 
     // Gradient
     const copyGradientToClipboard = async (input) => {
@@ -23,8 +23,8 @@ export const Palette = () => {
         setGradientCopiedText(text);
     };
 
-    
-      
+
+
 
     function generateGoldenRatioPalette(inputColor) {
 
@@ -48,18 +48,18 @@ export const Palette = () => {
             function padHex(hex) {
                 // Check if the HEX value is less than six characters long
                 if (hex.length < 7) {
-                  // Pad the HEX value with leading zeros
-                  return `#${hex.substring(1, 7).padStart(6, '0')}`;
+                    // Pad the HEX value with leading zeros
+                    return `#${hex.substring(1, 7).padStart(6, '0')}`;
                 }
                 // Check if the HEX value is longer than six characters
                 else if (hex.length > 7) {
-                  // Trim the HEX value to six characters
-                  return `#${hex.substring(1, 7)}`;
+                    // Trim the HEX value to six characters
+                    return `#${hex.substring(1, 7)}`;
                 }
                 // Otherwise, return the HEX value as-is
                 return hex;
             }
-              
+
 
             // Check the length of each color and pad with leading zeros if necessary
             const paddedColor1 = padHex(color1);
@@ -94,22 +94,22 @@ export const Palette = () => {
             const color3 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b / phi).toString(16).padStart(2, '0')}`;
             const color4 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
             const color5 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
-            
+
             function padHex(hex) {
                 // Check if the HEX value is less than six characters long
                 if (hex.length < 7) {
-                  // Pad the HEX value with leading zeros
-                  return `#${hex.substring(1, 7).padStart(6, '0')}`;
+                    // Pad the HEX value with leading zeros
+                    return `#${hex.substring(1, 7).padStart(6, '0')}`;
                 }
                 // Check if the HEX value is longer than six characters
                 else if (hex.length > 7) {
-                  // Trim the HEX value to six characters
-                  return `#${hex.substring(1, 7)}`;
+                    // Trim the HEX value to six characters
+                    return `#${hex.substring(1, 7)}`;
                 }
                 // Otherwise, return the HEX value as-is
                 return hex;
             }
-              
+
 
             // Check the length of each color and pad with leading zeros if necessary
             const paddedColor1 = padHex(color1);
@@ -133,18 +133,40 @@ export const Palette = () => {
     }
 
     return (
-        <View>
+        <View style={{marginLeft: '3rem', marginRight: '3rem', marginTop: '1rem'}}>
             <Text style={{
                 fontFamily: 'Inter_900Black',
-                fontSize: '4vh',
+                fontSize: '20px',
                 alignSelf: 'center',
                 color: 'white'
             }}>Custom Palette</Text>
 
             <View style={{}}>
                 {inputColor &&
+                    // <TouchableOpacity
+                    //     onPress={() => {
+                    //         setInputColor('');
+                    //         setInputColor('');
+                    //         setPalette([]);
+                    //         setGradientCopiedText('');
+                    //     }}
+                    //     style={{
+                    //         height: '4vh',
+                    //         width: '4vh',
+                    //         borderRadius: 10,
+                    //         position: 'absolute',
+                    //         zIndex: 10,
+                    //         backgroundColor: '#ff1654',
+                    //         top: '1vh',
+                    //         left: '-5vh'
+                    //     }}>
+                    //     <Image
+                    //         source={require('./assets/x.png')}
+                    //         style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.3vh', marginLeft: '0.1vh' }}
+                    //     />
+                    // </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => { 
+                        onPress={() => {
                             setInputColor('');
                             setInputColor('');
                             setPalette([]);
@@ -158,7 +180,7 @@ export const Palette = () => {
                             zIndex: 10,
                             backgroundColor: '#ff1654',
                             top: '1vh',
-                            left: '-1.5vw'
+                            left: '0.5vh'
                         }}>
                         <Image
                             source={require('./assets/x.png')}
@@ -229,7 +251,7 @@ export const Palette = () => {
 
 
 
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center', backgroundColor: '#fff', borderRadius: '0.5rem' }}>
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
                     {palette.map((color) => (
                         <>
                             <TouchableOpacity
@@ -238,12 +260,19 @@ export const Palette = () => {
                                 onMouseLeave={() => setIsGradientHovered(false)}
                                 key={color}
                             >
-                                <View key={color} style={{ backgroundColor: color, height: 50, width: 75, borderRadius: 5 }} />
+                                <View key={color} style={{
+                                    backgroundColor: color,
+                                    height: 50,
+                                    width: 75,
+                                    borderWidth: 1,
+                                    borderRadius: 6,
+                                    borderColor: 'rgba(100, 100, 100, 0.25)',
+                                }}></View>
                             </TouchableOpacity>
                         </>
                     ))}
                 </View>
-                <View style={{ alignSelf: 'center', flexDirection: 'column' }}>
+                <View style={{ alignSelf: 'center', flexDirection: 'column', margin: '1rem' }}>
                     <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '2.2rem' }}>{gradientCopiedText}</Text>
                     {gradientCopiedText != '' &&
                         <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center' }}>Copied!</Text>

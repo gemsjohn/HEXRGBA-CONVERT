@@ -6,6 +6,7 @@ import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Blog } from './Blog';
+import { Layout } from './Layout';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -43,23 +44,23 @@ function HomeScreen({ navigation }) {
 
   return (
     <LinearGradient
-        colors={['#181818', '#000000']}
+        colors={['#1b262c', '#070707']}
         style={{ opacity: 1, width: '100%', alignSelf: 'center'}}
-      // start={[0.0, 0.5]} end={[1.0, 0.5]}
+      start={[0.0, 0.0]} end={[0.75, 0.5]}
       >
         <View >
 
-          <View style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', height: '4rem' }}>
-            <Text style={{ color: '#b892ff', alignSelf: 'center', marginTop: '0.8rem', fontSize: '2rem', fontWeight: 'bold', fontFamily: 'Inter_900Black', }}>HEX to RGBA Pro</Text>
+          <View style={{ height: '4rem', borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '50vw', alignSelf: 'center' }}>
+            <Text style={{ color: 'white', alignSelf: 'center', marginTop: '0.8rem', fontSize: '2rem', fontWeight: 'bold', fontFamily: 'Inter_900Black', }}>HEX to RGBA Pro</Text>
           </View>
-          <View style={{alignSelf: 'center', }}>
+          {/* <View style={{alignSelf: 'center', }}>
             <TouchableOpacity onPress={() => navigation.navigate('Blog')} style={{backgroundColor: 'rgba(255, 255, 255, 0.05)', height: '3rem', marginTop: '1rem', borderRadius: '1rem'}}>
               <Text style={{color: 'white', fontSize: 20, margin: '1rem', fontSize: '1.8vh', fontFamily: 'Inter_900Black'}}>INFO</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
 
           <View style={{}}>
-            <SafeAreaView style={styles.container}>
+            {/* <SafeAreaView style={styles.container}>
               <ScrollView 
                 style={{}}
                 refreshControl={
@@ -69,10 +70,11 @@ function HomeScreen({ navigation }) {
                     enabled={true}
                   />
                 } 
-              >
+              > */}
               <Convert />
-              </ScrollView>
-            </SafeAreaView>
+              {/* <Layout /> */}
+              {/* </ScrollView>
+            </SafeAreaView> */}
             {/* <StatusBar style="auto" /> */}
           </View>
 
@@ -83,39 +85,7 @@ function HomeScreen({ navigation }) {
   );
 }
 
-function BlogScreen({ navigation }) {
-  return (
-    <LinearGradient
-        colors={['#181818', '#000000']}
-        style={{ opacity: 1, width: '100%', alignSelf: 'center' }}
-      // start={[0.0, 0.5]} end={[1.0, 0.5]}
-      >
-        <View >
 
-          <View style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', height: '4rem' }}>
-            <Text style={{ color: '#b892ff', alignSelf: 'center', marginTop: '0.8rem', fontSize: '2rem', fontWeight: 'bold', fontFamily: 'Inter_900Black', }}>HEX to RGBA Pro</Text>
-          </View>
-          <View style={{alignSelf: 'center', }}>
-            <TouchableOpacity onPress={() => navigation.navigate('Home')} style={{backgroundColor: 'rgba(255, 255, 255, 0.05)', height: '3rem', marginTop: '1rem', borderRadius: '1rem'}}>
-              <Text style={{color: 'white', fontSize: 20, margin: '1rem', fontSize: '1.8vh', fontFamily: 'Inter_900Black'}}>HOME</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={{}}>
-            <SafeAreaView style={styles.container}>
-              <ScrollView style={{}} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-              <Blog />
-              </ScrollView>
-            </SafeAreaView>
-            {/* <StatusBar style="auto" /> */}
-          </View>
-
-          <View style={{ height: '100rem' }} />
-
-        </View>
-      </LinearGradient>
-  );
-}
 
 const Stack = createNativeStackNavigator();
 
@@ -126,14 +96,6 @@ export default function App() {
           <Stack.Screen 
             name="Home" 
             component={HomeScreen}
-            options={{
-              animationEnabled: false,
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen 
-            name="Blog" 
-            component={BlogScreen} 
             options={{
               animationEnabled: false,
               headerShown: false,

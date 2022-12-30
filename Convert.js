@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, Dimensions, PixelRatio, TouchableOpacity, StyleSheet, Image, Color } from 'react-native';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { GetColorGradient } from './utils/GetColorGradient';
@@ -36,8 +36,92 @@ export const Convert = () => {
     const [isGradientHovered, setIsGradientHovered] = useState(false);
     const [copiedText, setCopiedText] = React.useState('');
     const [gradientCopiedText, setGradientCopiedText] = React.useState('');
+    const [squares, setSquares] = useState([]);
+    const data = [
+        {
+            data: 
+                <View style={{alignSelf: 'center'}}>
+                    <Text style={{...styles.paragraph, color: '#00b4d8'}}>
+                    RGBA (Red Green Blue Alpha) 
+                    </Text>
+                    <Text style={styles.paragraph}>
+                        RGBA stands for Red Green Blue Alpha, which is a color model used in digital design and programming to 
+                        specify colors with an added alpha channel for transparency. Like the RGB model, RGBA uses a combination 
+                        of letters and numbers to represent specific colors, but with the added alpha channel, RGBA codes consist 
+                        of four values instead of three. The alpha channel represents the level of transparency, with 0 being 
+                        fully transparent and 1 being fully opaque.
+                    </Text>
+                    <Text style={styles.paragraph}>
+                        For example, the RGBA code for red with 50% transparency would be "rgba(255,0,0,0.5)". In this case, the 
+                        red value is 255 (fully intense), the green and blue values are 0 (no intensity), and the alpha value is 0.5 (50% transparency).
+                    </Text>
+                    <Text style={styles.paragraph}>
+                        One key difference between RGBA and RGB is the inclusion of the alpha channel in RGBA, which allows for the specification of 
+                        transparent colors. This can be useful for creating layered or blended effects in digital design. RGB, on the other hand, does 
+                        not have an alpha channel and is limited to solid, opaque colors.
+                    </Text>
+                    {/* <View style={{borderBottomColor: 'white', borderBottomWidth: 4, marginTop: '1rem', marginBottom: '1rem'}}></View> */}
+                </View>
+        },
+        {
+            data:
+            <View style={{alignSelf: 'center'}}>
+                <Text style={{...styles.paragraph, color: '#00b4d8'}}>
+                Hexidecimal 
+                </Text>
+                <Text style={styles.paragraph}>
+                    Hex color codes are a widely used method in digital design and programming to specify colors 
+                    for web pages, graphics, and user interfaces. These codes consist of a six-digit combination of 
+                    letters and numbers that represent a specific color using the RGB (red, green, blue) color model. 
+                    Each color is represented by a two-digit hexadecimal number, with 00 being the lowest intensity 
+                    and FF being the highest intensity. For example, the hex color code for red is "#FF0000", green 
+                    is "#00FF00", and blue is "#0000FF". In addition to these primary colors, hex color codes can be 
+                    combined to create a wide range of colors, such as "#FFFFFF" for white, "#000000" for black, and 
+                    "#9ACD32" for yellow.
+                </Text>
+            </View>
+        },
+        {
+            data:
+            <View style={{alignSelf: 'center'}}>
+                <Text style={{...styles.paragraph, color: '#00b4d8'}}>
+                    Complementary Colors
+                </Text>
+                <Text style={styles.paragraph}>
+                    Certain colors and hues can work well together and appear to be complementary 
+                    because of the way that the colors are arranged on the color wheel. The color 
+                    wheel is a visual representation of the colors of the visible spectrum arranged in a circle.
+                </Text>
+                <Text style={styles.paragraph}>
+                    There are a few different ways that colors can be arranged on the color wheel, but one common 
+                    way is to arrange the primary colors (red, yellow, and blue) around the wheel, with the secondary 
+                    colors (orange, green, and purple) between the primary colors. The tertiary colors 
+                    (yellow-green, blue-green, blue-purple, red-purple, red-orange, and yellow-orange) are 
+                    located between the primary and secondary colors on the wheel.
+                </Text>
+                <Text style={styles.paragraph}>
+                    Colors that are located opposite each other on the color wheel are known as complementary colors. 
+                    These colors tend to work well together because they are highly contrasting, which can create a 
+                    visually appealing balance. For example, red and green are complementary colors, as are blue and orange.
+                </Text>
+                <Text style={styles.paragraph}>
+                    There are several theories about why certain color combinations are pleasing to the eye, and some of 
+                    these theories involve mathematical principles such as the golden ratio. However, the exact reasons 
+                    for why certain color combinations are perceived as being harmonious or complementary are still not 
+                    fully understood and are the subject of ongoing research in fields such as psychology and neuroscience.
+                </Text>
+            </View>
+        }
+
+    ]; // example data array
     let [fontsLoaded] = useFonts({ Inter_900Black, });
     if (!fontsLoaded) { return null; }
+
+
+
+
+
+
 
 
 
@@ -92,191 +176,266 @@ export const Convert = () => {
 
 
 
+
+
+
     return (
-
-        <View style={{flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center'}}>
-            <View style={{marginLeft: '3rem', marginRight: '3rem', marginTop: '3rem'}}>
-                <Text style={{
-                    fontFamily: 'Inter_900Black',
-                    fontSize: '4vh',
-                    alignSelf: 'center',
-                    color: 'white'
-                }}>Convert HEX or RGBA</Text>
-
-                <View style={{}}>
-                    {value &&
-                        <TouchableOpacity
-                            onPress={() => { 
-                                setValue('');  
-                                setResult('');
-                                setGradient([]);
-                                setGradientCopiedText('');
-                            }}
-                            style={{
-                                height: '4vh',
-                                width: '4vh',
-                                borderRadius: 10,
-                                position: 'absolute',
-                                zIndex: 10,
-                                backgroundColor: '#ff1654',
-                                top: '1vh'
-                            }}>
-                            <Image
-                                source={require('./assets/x.png')}
-                                style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.3vh', marginLeft: '0.1vh' }}
-                            />
-                        </TouchableOpacity>
-                    }
-                    <View style={{ flexDirection: 'column', alignSelf: 'center', margin: 10 }}>
-                        <TextInput
-                            value={value}
-                            onChangeText={setValue}
-                            placeholder="Enter HEX or RGBA value"
-                            style={{
-                                outline: 'none',
-                                backgroundColor: 'transparent',
-                                color: 'white',
-                                display: 'flex',
-                                justifyContent: 'flex-start',
-                                padding: 30,
-                                border: 'solid',
-                                borderColor: 'white',
-                                borderWidth: 4,
-                                borderBottomWidth: 2,
-                                borderTopLeftRadius: 30,
-                                borderBottomLeftRadius: 0,
-                                borderTopRightRadius: 30,
-                                borderBottomRightRadius: 0,
-                                alignSelf: 'center',
-                                marginTop: 10,
-                                // marginBottom: 4,
-                                width: '20rem',
-                                fontSize: '1.8vh',
-                                fontFamily: 'Inter_900Black'
-                            }}
-                        />
-                        <TouchableOpacity
-                            onPress={() => handleConvert()}
-                            style={{
-                                backgroundColor: '#ff1654',
-                                padding: '1vh',
-                                border: 'solid',
-                                borderColor: 'white',
-                                borderWidth: 4,
-                                borderTopWidth: 2,
-                                borderTopLeftRadius: 0,
-                                borderBottomLeftRadius: 30,
-                                borderTopRightRadius: 0,
-                                borderBottomRightRadius: 30,
-                                // marginTop: 10,
-                                marginBottom: 4,
-                                width: '20rem'
-                            }}
-                        >
-                            <Text style={{
-                                color: 'white',
-                                marginTop: '0.5vh',
-                                fontSize: '2vh',
-                                fontFamily: 'Inter_900Black',
-                                alignSelf: 'center'
-                            }}>Swap!</Text>
-                        </TouchableOpacity>
-                    </View>
-                    {result &&
-                        <>
-                            <TouchableOpacity
-                                onPress={copyToClipboard}
-                                activeOpacity={1}
-                                style={[
-                                    styles.button,
-                                    isHovered ? styles.hoveredButton : styles.normalButton
-                                ]}
-                                onMouseEnter={() => setIsHovered(true)}
-                                onMouseLeave={() => setIsHovered(false)}
-                            >
-
-                                <Text style={{
-                                    color: 'black',
-                                    fontSize: 30,
-                                    marginTop: '0.5rem',
-                                    marginBottom: '2vh',
-                                    fontFamily: 'Inter_900Black',
-                                    alignSelf: 'center'
-                                }}>{result}</Text>
-
-                                {copiedText != '' &&
-                                    <Text style={{
-                                        color: 'black',
-                                        fontSize: 20,
-                                        margin: '0.5rem',
-                                        fontFamily: 'Inter_900Black',
-                                        alignSelf: 'center'
-                                    }}>Copied!</Text>
-                                }
-
-                                <View style={{
-                                    width: '18rem',
-                                    alignSelf: 'center',
-                                    height: '15rem',
-                                    marginBottom: HeightRatio(20),
-                                    borderRadius: 30,
-                                    backgroundColor: `${result}`
-                                }}></View>
-
-                            </TouchableOpacity>
-
-                        </>
-                    }
-
-                </View>
+        <>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
 
 
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-                    {gradient.map((c, i) => (
-                        <>
-                            <TouchableOpacity
-                                onPress={() => copyGradientToClipboard(c)} style={{ flexWrap: 'wrap', width: 75, margin: 4 }}
-                                onMouseEnter={() => setIsGradientHovered(true)}
-                                onMouseLeave={() => setIsGradientHovered(false)}
-                                key={i}
-                            >
-                                <View key={i} style={{ backgroundColor: c, height: 50, width: 75, borderRadius: 5 }}>
-                                    {/* {isGradientHovered &&
-                                        <Text key={i} style={{
-                                            fontFamily: 'Inter_900Black',
-                                            alignSelf: 'center',
-                                            marginTop: '1rem'
-                                        }}>{c}</Text>
-                                    } */}
-                                </View>
-                            </TouchableOpacity>
-                        </>
-                    ))}
-                </View>
-                <View style={{ alignSelf: 'center', flexDirection: 'column' }}>
-                    <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '2.2rem' }}>{gradientCopiedText}</Text>
-                    {gradientCopiedText != '' &&
-                        <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center' }}>Copied!</Text>
-                    }
-                </View>
-            </View>
-
-            <View style={{marginLeft: '3rem', marginRight: '3rem', marginTop: '3rem'}}>
-                <View style={{}}>
-                    <Palette />
-                </View>
-            </View>
-
-            {/* <View style={{marginLeft: '3rem', marginRight: '3rem', marginTop: '3rem'}}>
+                {/* <View style={{marginLeft: '3rem', marginRight: '3rem', marginTop: '3rem'}}>
                 <View style={{}}>
                 <EyeDropper/>
                 </View>
             </View> */}
-            
+
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '100vw', alignSelf: 'center', justifyContent: 'center' }}>
+                    <View style={{ flexDirection: 'column', width: '400px', margin: '2rem' }}>
+                        <Text style={{ color: 'white', alignSelf: 'center', marginTop: '0.8rem', fontSize: '50px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', }}>Jump from HEX to RGBA to color palette!</Text>
+                        <Text style={{ color: 'white', alignSelf: 'center', marginTop: '0.8rem', fontSize: '18px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', width: '350px', marginTop: '10px' }}>
+                            Uuse colors consistently across different platforms and systems, customize the appearance of colors, and work with the color model that is most convenient for you.
+                        </Text>
+
+                    </View>
 
 
-            
-        </View>
+                    <View style={{ flexDirection: 'column', height: '100%', width: '400px', margin: '2rem' }}>
+                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
+                            <View
+
+                                style={[
+                                    styles.primarySquare,
+                                    {
+                                        shadowOffset: {
+                                            width: 10,
+                                            height: 10,
+                                        },
+                                        shadowOpacity: 0.15,
+                                        shadowRadius: 10,
+                                    },
+                                ]}
+                            >
+                                <View style={{ marginLeft: '3rem', marginRight: '3rem', marginTop: '1rem' }}>
+                                    <Text style={{
+                                        fontFamily: 'Inter_900Black',
+                                        fontSize: '20px',
+                                        alignSelf: 'center',
+                                        color: 'white'
+                                    }}>Convert HEX or RGBA</Text>
+
+                                    <View style={{}}>
+                                        {value &&
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    setValue('');
+                                                    setResult('');
+                                                    setGradient([]);
+                                                    setGradientCopiedText('');
+                                                }}
+                                                style={{
+                                                    height: '4vh',
+                                                    width: '4vh',
+                                                    borderRadius: 10,
+                                                    position: 'absolute',
+                                                    zIndex: 10,
+                                                    backgroundColor: '#ff1654',
+                                                    top: '1vh',
+                                                    left: '-5vh'
+                                                }}>
+                                                <Image
+                                                    source={require('./assets/x.png')}
+                                                    style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.3vh', marginLeft: '0.1vh' }}
+                                                />
+                                            </TouchableOpacity>
+                                        }
+                                        <View style={{ flexDirection: 'column', alignSelf: 'center', margin: 10 }}>
+                                            <TextInput
+                                                value={value}
+                                                onChangeText={setValue}
+                                                placeholder="Enter HEX or RGBA value"
+                                                style={{
+                                                    outline: 'none',
+                                                    backgroundColor: 'transparent',
+                                                    color: 'white',
+                                                    display: 'flex',
+                                                    justifyContent: 'flex-start',
+                                                    padding: 30,
+                                                    border: 'solid',
+                                                    borderColor: 'white',
+                                                    borderWidth: 4,
+                                                    borderBottomWidth: 2,
+                                                    borderTopLeftRadius: 30,
+                                                    borderBottomLeftRadius: 0,
+                                                    borderTopRightRadius: 30,
+                                                    borderBottomRightRadius: 0,
+                                                    alignSelf: 'center',
+                                                    marginTop: 10,
+                                                    // marginBottom: 4,
+                                                    width: '20rem',
+                                                    fontSize: '1.8vh',
+                                                    fontFamily: 'Inter_900Black'
+                                                }}
+                                            />
+                                            <TouchableOpacity
+                                                onPress={() => handleConvert()}
+                                                style={{
+                                                    backgroundColor: '#ff1654',
+                                                    padding: '1vh',
+                                                    border: 'solid',
+                                                    borderColor: 'white',
+                                                    borderWidth: 4,
+                                                    borderTopWidth: 2,
+                                                    borderTopLeftRadius: 0,
+                                                    borderBottomLeftRadius: 30,
+                                                    borderTopRightRadius: 0,
+                                                    borderBottomRightRadius: 30,
+                                                    // marginTop: 10,
+                                                    marginBottom: 4,
+                                                    width: '20rem'
+                                                }}
+                                            >
+                                                <Text style={{
+                                                    color: 'white',
+                                                    marginTop: '0.5vh',
+                                                    fontSize: '2vh',
+                                                    fontFamily: 'Inter_900Black',
+                                                    alignSelf: 'center'
+                                                }}>Swap!</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                        {result &&
+                                            <>
+                                                <TouchableOpacity
+                                                    onPress={copyToClipboard}
+                                                    activeOpacity={1}
+                                                    style={[
+                                                        styles.button,
+                                                        isHovered ? styles.hoveredButton : styles.normalButton
+                                                    ]}
+                                                    onMouseEnter={() => setIsHovered(true)}
+                                                    onMouseLeave={() => setIsHovered(false)}
+                                                >
+
+                                                    <Text style={{
+                                                        color: 'white',
+                                                        fontSize: 18,
+                                                        fontFamily: 'Inter_900Black',
+                                                        alignSelf: 'center',
+                                                        marginBottom: '1rem'
+                                                        // width: '200px'
+                                                        // margin: '1rem'
+                                                    }}>{result}</Text>
+
+                                                    {copiedText != '' &&
+                                                        <Text style={{
+                                                            color: 'white',
+                                                            fontSize: 20,
+                                                            margin: '0.5rem',
+                                                            fontFamily: 'Inter_900Black',
+                                                            alignSelf: 'center'
+                                                        }}>Copied!</Text>
+                                                    }
+
+                                                    <View style={{
+                                                        width: '100px',
+                                                        alignSelf: 'center',
+                                                        height: '100px',
+                                                        borderRadius: 6,
+                                                        borderWidth: 1,
+                                                        borderColor: 'rgba(100, 100, 100, 0.25)',
+                                                        backgroundColor: `${result}`
+                                                    }}></View>
+
+                                                </TouchableOpacity>
+
+                                            </>
+                                        }
+
+                                    </View>
+
+
+                                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
+                                        {gradient.map((c, i) => (
+                                            <>
+                                                <TouchableOpacity
+                                                    onPress={() => copyGradientToClipboard(c)} style={{ flexWrap: 'wrap', width: 75, margin: 4 }}
+                                                    onMouseEnter={() => setIsGradientHovered(true)}
+                                                    onMouseLeave={() => setIsGradientHovered(false)}
+                                                    key={i}
+                                                >
+                                                    <View key={i} style={{
+                                                        backgroundColor: c,
+                                                        height: 50,
+                                                        width: 75,
+                                                        borderWidth: 1,
+                                                        borderRadius: 6,
+                                                        borderColor: 'rgba(100, 100, 100, 0.25)',
+                                                    }}></View>
+                                                </TouchableOpacity>
+                                            </>
+                                        ))}
+                                    </View>
+                                    <View style={{ alignSelf: 'center', flexDirection: 'column', margin: '1rem' }}>
+                                        <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '2.2rem' }}>{gradientCopiedText}</Text>
+                                        {gradientCopiedText != '' &&
+                                            <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center' }}>Copied!</Text>
+                                        }
+                                    </View>
+                                </View>
+                            </View>
+
+                            <View
+                                style={[
+                                    styles.primarySquare,
+                                    {
+                                        shadowOffset: {
+                                            width: 10,
+                                            height: 10,
+                                        },
+                                        shadowOpacity: 0.15,
+                                        shadowRadius: 10,
+                                    },
+                                ]}
+                            >
+                                <Palette />
+                            </View>
+
+                        </View>
+                    </View>
+
+                </View>
+
+
+
+
+            </View>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
+                <View style={{ flexDirection: 'column', width: '84vw', margin: 2 }}>
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
+                        {data.map((item) => (
+                            <View
+                                key={item}
+                                style={[
+                                    styles.square,
+                                    {
+                                        shadowOffset: {
+                                            width: 10,
+                                            height: 10,
+                                        },
+                                        shadowOpacity: 0.15,
+                                        shadowRadius: 10,
+                                    },
+                                ]}
+                            >
+                                {item.data}
+                            </View>
+                        ))}
+
+                    </View>
+                </View>
+            </View>
+        </>
 
     );
 };
@@ -287,21 +446,41 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     hoveredButton: {
-        backgroundColor: 'rgba(255, 255, 255, 0.75)',
-        marginBottom: HeightRatio(20),
-        width: '22rem',
-        alignSelf: 'center'
+        marginBottom: '10px',
+        alignSelf: 'center',
+        flexDirection: 'column',
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        width: '300px'
     },
     normalButton: {
-        backgroundColor: '#fff',
-        marginBottom: HeightRatio(20),
-        width: '22rem',
-        alignSelf: 'center'
+        marginBottom: '10px',
+        alignSelf: 'center',
+        flexDirection: 'column',
     },
     buttonText: {
         color: '#000',
         fontSize: 18,
     },
+    primarySquare: {
+        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+        width: '350px',
+        // height: '13rem',  
+        margin: '0.75rem',
+        borderRadius: '1rem'
+    },
+    square: {
+        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+        width: '80vw',
+        // height: '13rem',
+        margin: '0.75rem',
+        borderRadius: '1rem'
+    },
+    paragraph: {
+        marginVertical: 8,
+        color: 'white', fontFamily: 'Inter_900Black', fontSize: '2vh',
+        width: '78vw',
+        padding: '0.25rem'
+      },
 });
 
 
