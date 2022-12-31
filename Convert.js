@@ -444,8 +444,9 @@ export const Convert = () => {
                 {/* COLOR PALETTA INSPIRATION */}
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'column', }}>
-                        <View style={{ flexDirection: 'column', justifyContent: 'center', marginTop: '4vh', width: '90vw' }}>
+                        <View style={{ flexDirection: 'column', justifyContent: 'center', marginTop: '6vh', width: '90vw' }}>
                             <Text style={{color: 'white', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center', textAlign: 'center'}}>Color Palette Inspiration</Text>
+                            <Text style={{color: '#ff9f1c', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '3vh', alignSelf: 'center', textAlign: 'center', marginTop: '2vh'}}>Click a Color to Copy!</Text>
                             <View style={{borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '60vw', alignSelf: 'center', marginTop: '2rem'}} />
                             <View style={{alignSelf: 'center', marginTop: '1rem'}}></View>
                         </View>
