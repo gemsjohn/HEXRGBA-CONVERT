@@ -29,11 +29,17 @@ export const Palette = () => {
     function generateGoldenRatioPalette(inputColor) {
 
         if (inputColor.startsWith('#')) {
+            const [r0, g0, b0, a0] = inputColor.match(/\w\w/g).map(x => parseInt(x, 16));
+            let a;
             // Convert HEX to RGBA
             const r = parseInt(inputColor.substring(1, 3), 16);
             const g = parseInt(inputColor.substring(3, 5), 16);
             const b = parseInt(inputColor.substring(5, 7), 16);
-            const a = 1; // Assume full opacity
+            if (a0 != undefined) {
+                a = a0;
+            } else {
+                a = 255;
+            }
 
             // Calculate the golden ratio
             const phi = (1 + Math.sqrt(5)) / 2;
@@ -72,9 +78,56 @@ export const Palette = () => {
             return [paddedColor1, paddedColor2, paddedColor3, paddedColor4, paddedColor5];
 
         } else if (inputColor.startsWith('rgba')) {
-            console.log("STARTS WITH")
             // Convert RGBA to HEX
             const parts = inputColor.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
+            const r0 = parseInt(parts[1]).toString(16).padStart(2, '0');
+            const g0 = parseInt(parts[2]).toString(16).padStart(2, '0');
+            const b0 = parseInt(parts[3]).toString(16).padStart(2, '0');
+            const newHex = `#${r0}${g0}${b0}`;
+
+            const r = parseInt(newHex.substring(1, 3), 16);
+            const g = parseInt(newHex.substring(3, 5), 16);
+            const b = parseInt(newHex.substring(5, 7), 16);
+            const a = 1; // Assume full opacity
+
+            // Calculate the golden ratio
+            const phi = (1 + Math.sqrt(5)) / 2;
+
+            // Generate 5 colors based on the golden ratio
+            const color1 = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+            const color2 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
+            const color3 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b / phi).toString(16).padStart(2, '0')}`;
+            const color4 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
+            const color5 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
+
+            function padHex(hex) {
+                // Check if the HEX value is less than six characters long
+                if (hex.length < 7) {
+                    // Pad the HEX value with leading zeros
+                    return `#${hex.substring(1, 7).padStart(6, '0')}`;
+                }
+                // Check if the HEX value is longer than six characters
+                else if (hex.length > 7) {
+                    // Trim the HEX value to six characters
+                    return `#${hex.substring(1, 7)}`;
+                }
+                // Otherwise, return the HEX value as-is
+                return hex;
+            }
+
+
+            // Check the length of each color and pad with leading zeros if necessary
+            const paddedColor1 = padHex(color1);
+            const paddedColor2 = padHex(color2);
+            const paddedColor3 = padHex(color3);
+            const paddedColor4 = padHex(color4);
+            const paddedColor5 = padHex(color5);
+
+            // Return the array of padded colors
+            return [paddedColor1, paddedColor2, paddedColor3, paddedColor4, paddedColor5];
+        } else if (inputColor.startsWith('rgb')) {
+            // Convert RGBA to HEX
+            const parts = inputColor.match(/^rgb?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
             const r0 = parseInt(parts[1]).toString(16).padStart(2, '0');
             const g0 = parseInt(parts[2]).toString(16).padStart(2, '0');
             const b0 = parseInt(parts[3]).toString(16).padStart(2, '0');
@@ -124,7 +177,7 @@ export const Palette = () => {
     }
 
     function handleGeneratePalette() {
-        if (inputColor.startsWith('#') || inputColor.startsWith('rgba')) {
+        if (inputColor.startsWith('#') || inputColor.startsWith('rgba') || inputColor.startsWith('rgb')) {
             const newPalette = generateGoldenRatioPalette(inputColor);
             setPalette(newPalette);
         } else {
@@ -133,13 +186,19 @@ export const Palette = () => {
     }
 
     return (
-        <View style={{marginLeft: '3rem', marginRight: '3rem', marginTop: '1rem'}}>
+        <View style={{ marginLeft: '3rem', marginRight: '3rem', marginTop: '1rem' }}>
             <Text style={{
                 fontFamily: 'Inter_900Black',
                 fontSize: '20px',
                 alignSelf: 'center',
                 color: 'white'
-            }}>Custom Palette</Text>
+            }}>Harmonious Palette</Text>
+            <Text style={{
+                fontFamily: 'Inter_900Black',
+                fontSize: '12px',
+                alignSelf: 'center',
+                color: 'white'
+            }}>(HEX, RGB, RGBA)</Text>
 
             <View style={{}}>
                 {inputColor &&
@@ -171,7 +230,7 @@ export const Palette = () => {
                     <TextInput
                         value={inputColor}
                         onChangeText={text => setInputColor(text)}
-                        placeholder="Enter HEX or RGBA value"
+                        placeholder="Enter HEX, RGB, RGBA..."
                         style={{
                             outline: 'none',
                             backgroundColor: 'transparent',
