@@ -61,25 +61,15 @@ function HomeScreen({ navigation }) {
           </View> */}
 
           <View style={{}}>
-            {/* <SafeAreaView style={styles.container}>
-              <ScrollView 
-                style={{}}
-                refreshControl={
-                  <RefreshControl
-                    refreshing={refreshing}
-                    onRefresh={onRefresh}
-                    enabled={true}
-                  />
-                } 
-              > */}
+
               <Convert />
-              {/* <Layout /> */}
-              {/* </ScrollView>
-            </SafeAreaView> */}
-            {/* <StatusBar style="auto" /> */}
+              <View style={{borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '60vw', alignSelf: 'center', marginTop: '2rem'}} />
+              <View style={{alignSelf: 'center', marginTop: '1rem'}}>
+                <Text style={{color: 'white', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '1rem'}}>HEX to RGBA Pro  |  Made with &#x2665;</Text>
+              </View>
           </View>
 
-          <View style={{ height: '100rem' }} />
+          <View style={{ height: '10rem' }} />
 
         </View>
       </LinearGradient>
