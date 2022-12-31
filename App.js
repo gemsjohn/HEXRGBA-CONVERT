@@ -83,9 +83,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="Color Converter - Hex to RGBA - HTML Color Picker and Pelette">
           <Stack.Screen 
-            name="Home" 
+            name="Color Converter - Hex to RGBA - HTML Color Picker and Pelette" 
             component={HomeScreen}
             options={{
               animationEnabled: false,
