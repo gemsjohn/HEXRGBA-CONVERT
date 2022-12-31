@@ -6,7 +6,7 @@
   "scripts": {
     "start": "expo start",
     "predeploy": "expo export:web",
-    "deploy": "echo 'hextorgbapro.com' > ./build/CNAME && gh-pages -d build",
+    "deploy": "echo 'hextorgbapro.com' > ./web-build/CNAME && gh-pages -d web-build",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
