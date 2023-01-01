@@ -250,7 +250,7 @@ export const Palette = () => {
                             marginTop: 10,
                             // marginBottom: 4,
                             width: '20rem',
-                            fontSize: '4vw',
+                            fontSize: '18px',
                             fontFamily: 'Inter_900Black'
                         }}
                     />
@@ -258,7 +258,7 @@ export const Palette = () => {
                         onPress={handleGeneratePalette}
                         style={{
                             backgroundColor: '#ff1654',
-                            padding: '1vh',
+                            padding: '10px',
                             border: 'solid',
                             borderColor: 'white',
                             borderWidth: 4,
@@ -275,7 +275,7 @@ export const Palette = () => {
                         <Text style={{
                             color: 'white',
                             marginTop: '0.5vh',
-                            fontSize: '3vw',
+                            fontSize: '20px',
                             fontFamily: 'Inter_900Black',
                             alignSelf: 'center'
                         }}>Generate!</Text>
