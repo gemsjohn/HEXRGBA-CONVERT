@@ -14,7 +14,7 @@ export const Palette = () => {
     // Gradient
     const copyGradientToClipboard = async (input) => {
         await Clipboard.setStringAsync(input);
-        console.log("copyToClipboard")
+        // console.log("copyToClipboard")
         fetchGradientCopiedText();
     };
 

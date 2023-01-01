@@ -209,9 +209,9 @@ export const ColorPaletteAuto = () => {
         }
 
     }, [])
-    useEffect(() => {
-        console.log(palettes)
-    }, [palettes])
+    // useEffect(() => {
+    //     console.log(palettes)
+    // }, [palettes])
 
 
     return (
@@ -252,7 +252,7 @@ export const ColorPaletteAuto = () => {
                             <View style={styles.paletteBox} key={i} >
                                 {palettes[i].map((color, index) => (
                                     <TouchableOpacity key={index} onPress={() => copyColorCode(color)}>
-                                        <View style={[styles.color, { backgroundColor: color }]} />
+                                        <View key={index} style={[styles.color, { backgroundColor: color }]} />
                                     </TouchableOpacity>
                                 ))}
                             </View>

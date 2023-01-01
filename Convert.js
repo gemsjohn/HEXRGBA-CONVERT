@@ -5,7 +5,7 @@ import { GetColorGradient } from './utils/GetColorGradient';
 import * as Clipboard from 'expo-clipboard';
 import { Palette } from './Palette';
 import { EyeDropper } from './Eyedropper';
-import { ColorPaletteGenerator } from'./ColorPalleteGenerator';
+import { ColorPaletteGenerator } from './ColorPalleteGenerator';
 import { ColorPaletteAuto } from './ColorPalleteAuto';
 import { ConvertTool } from './ConvertTool';
 // import { PixelHover } from './PixelHover';
@@ -32,15 +32,6 @@ const HeightRatio = (size) => {
 }
 
 export const Convert = () => {
-    // const [value, setValue] = useState('')
-    const [result, setResult] = useState('');
-    // const [color, setColor] = useState('');
-    // const [gradient, setGradient] = useState([]);
-    // const [isHovered, setIsHovered] = useState(false);
-    // const [isGradientHovered, setIsGradientHovered] = useState(false);
-    // const [copiedText, setCopiedText] = React.useState('');
-    // const [gradientCopiedText, setGradientCopiedText] = React.useState('');
-    // const [squares, setSquares] = useState([]);
     const data = [
         {
             data:
@@ -121,194 +112,101 @@ export const Convert = () => {
     let [fontsLoaded] = useFonts({ Inter_900Black, });
     if (!fontsLoaded) { return null; }
 
-    // const handleGenerate = () => {
-    //     setGradient(GetColorGradient(color));
-    // };
-
-    // // Primary Color
-    // const copyToClipboard = async () => {
-    //     await Clipboard.setStringAsync(result);
-    //     console.log("copyToClipboard")
-    //     fetchCopiedText();
-    // };
-
-    // const fetchCopiedText = async () => {
-    //     const text = await Clipboard.getStringAsync();
-    //     setCopiedText(text);
-    // };
-
-    // // Gradient
-    // const copyGradientToClipboard = async (input) => {
-    //     await Clipboard.setStringAsync(input);
-    //     console.log("copyToClipboard")
-    //     fetchGradientCopiedText();
-    // };
-
-    // const fetchGradientCopiedText = async () => {
-    //     const text = await Clipboard.getStringAsync();
-    //     setGradientCopiedText(text);
-    // };
-
-    // const handleConvert = () => {
-    //     setCopiedText('')
-    //     if (value.startsWith('#')) {
-    //         // Convert HEX to RGBA
-    //         const r = parseInt(value.slice(1, 3), 16);
-    //         const g = parseInt(value.slice(3, 5), 16);
-    //         const b = parseInt(value.slice(5, 7), 16);
-    //         const a = 1; // Assume full opacity
-    //         setResult(`rgba(${r}, ${g}, ${b}, ${a})`);
-    //         setGradient(GetColorGradient(`rgba(${r}, ${g}, ${b}, ${a})`))
-    //     } else if (value.startsWith('rgba')) {
-    //         setGradient(GetColorGradient(value))
-    //         // Convert RGBA to HEX
-    //         const parts = value.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
-    //         const r = parseInt(parts[1]).toString(16).padStart(2, '0');
-    //         const g = parseInt(parts[2]).toString(16).padStart(2, '0');
-    //         const b = parseInt(parts[3]).toString(16).padStart(2, '0');
-    //         setResult(`#${r}${g}${b}`);
-    //     }
-    // };
-
-
-
-
-
-
     return (
         <>
-            <View style={{  }}>
+        <View style={{}}>
+            <View style={{ maxWidth: '100vw', flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
 
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                    <View style={{ flexDirection: 'column', width: '400px', margin: '2rem', }}>
-                        <Image source={require('./assets/cycle.png')} style={{ height: '40vh', width: '40vh', justifyContent: 'center', alignSelf: 'center' }} />
-
-                    </View>
-                    <View style={{ flexDirection: 'column', width: '400px', margin: '2rem' }}>
-                        <Text style={{ color: 'white', marginTop: '0.8rem', fontSize: '50px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', alignSelf: 'center' }}>Jump from HEX to RGBA to color palette!</Text>
-                        <Text style={{ color: 'white', marginTop: '0.8rem', fontSize: '18px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', width: '350px', marginTop: '10px', alignSelf: 'center' }}>
-                            Use colors consistently across different platforms and systems, customize the appearance of colors, and work with the color model that is most convenient for you.
-                        </Text>
-
-                    </View>
+                <View style={{ flexDirection: 'column', width: '25rem', margin: '2rem', }}>
+                    <Image source={require('./assets/cycle.png')} style={{ height: '40vh', width: '40vh', justifyContent: 'center', alignSelf: 'center' }} />
 
                 </View>
-                {/* TOOLS HEADER */}
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                    <View style={{ flexDirection: 'column', }}>
-                        <View style={{ flexDirection: 'column', justifyContent: 'center', marginTop: '4vh', width: '90vw' }}>
-                            <Text style={{color: 'white', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center', textAlign: 'center'}}>Tools</Text>
-                            <View style={{borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '60vw', alignSelf: 'center', marginTop: '2rem'}} />
-                            <View style={{alignSelf: 'center', marginTop: '1rem'}}></View>
-                        </View>
-                    </View>
+                <View style={{ flexDirection: 'column', width: '24rem', margin: '2rem' }}>
+                    <Text style={{ color: 'white', marginTop: '0.8rem', fontSize: '50px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', alignSelf: 'center' }}>Jump from HEX to RGBA to color palette!</Text>
+                    <Text style={{ color: 'white', marginTop: '0.8rem', fontSize: '18px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', width: '90%', marginTop: '10px', alignSelf: 'center' }}>
+                        Use colors consistently across different platforms and systems, customize the appearance of colors, and work with the color model that is most convenient for you.
+                    </Text>
                 </View>
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                    <View style={{ flexDirection: 'column', width: '400px', alignSelf: 'center' }}>
-                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                            <ConvertTool />
-                        </View>
-
-                    </View>
-                    <View style={{ flexDirection: 'column', width: '400px', alignSelf: 'center' }}>
-                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                            <View
-                                style={[
-                                    styles.primarySquare,
-                                    {
-                                        shadowOffset: {
-                                            width: 10,
-                                            height: 10,
-                                        },
-                                        shadowOpacity: 0.15,
-                                        shadowRadius: 10,
-                                    },
-                                ]}
-                            >
-                                <Palette />
-                            </View>
-
-                        </View>
-                    </View>
-                    <View style={{ flexDirection: 'column', width: '400px' }}>
-                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                            
-                            <View
-                                style={[
-                                    styles.primarySquare,
-                                    {
-                                        shadowOffset: {
-                                            width: 10,
-                                            height: 10,
-                                        },
-                                        shadowOpacity: 0.15,
-                                        shadowRadius: 10,
-                                    },
-                                ]}
-                            >
-                                <ColorPaletteGenerator />
-                            </View>
-                        </View>
-                    </View>
-
-                    <View style={{ height: '30vh' }} />
-                </View>
-                {/* COLOR PALETTA INSPIRATION */}
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                    <View style={{ flexDirection: 'column', }}>
-                        <View style={{ flexDirection: 'column', justifyContent: 'center', marginTop: '6vh', width: '90vw' }}>
-                            <Text style={{color: 'white', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center', textAlign: 'center'}}>Color Palette Inspiration</Text>
-                            <Text style={{color: '#ff9f1c', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '3vh', alignSelf: 'center', textAlign: 'center', marginTop: '2vh'}}>Click a Color to Copy!</Text>
-                            <View style={{borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '60vw', alignSelf: 'center', marginTop: '2rem'}} />
-                            <View style={{alignSelf: 'center', marginTop: '1rem'}}></View>
-                        </View>
-                    </View>
-                </View>
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                    <View style={{ flexDirection: 'column', width: '400px', alignSelf: 'center' }}>
-                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                            <ColorPaletteAuto />
-                        </View>
-                    </View>
-                </View>
-                {/* <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                    <View style={{ flexDirection: 'column', width: '400px', alignSelf: 'center' }}>
-                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                        <PixelHover />
-                        </View>
-                    </View>
-                </View> */}
-
-                
-
-                
-
             </View>
-            {/* <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                <View style={{ flexDirection: 'column', width: '84vw', margin: 2 }}>
+            {/* TOOLS HEADER */}
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
+                <View style={{ flexDirection: 'column', }}>
+                    <View style={{ flexDirection: 'column', justifyContent: 'center', marginTop: '4vh', width: '90vw' }}>
+                        <Text style={{ color: 'white', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center', textAlign: 'center' }}>Tools</Text>
+                        <View style={{borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '60vw', alignSelf: 'center', marginTop: '2rem'}} />
+                        <View style={{ alignSelf: 'center', marginTop: '1rem' }}></View>
+                    </View>
+                </View>
+            </View>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
+                <View style={{ flexDirection: 'column', width: '23rem', alignSelf: 'center' }}>
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                        {data.map((item) => (
-                            <View
-                                key={item}
-                                style={[
-                                    styles.square,
-                                    {
-                                        shadowOffset: {
-                                            width: 10,
-                                            height: 10,
-                                        },
-                                        shadowOpacity: 0.15,
-                                        shadowRadius: 10,
+                        <ConvertTool />
+                    </View>
+
+                </View>
+                <View style={{ flexDirection: 'column', width: '23rem', alignSelf: 'center' }}>
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
+                        <View
+                            style={[
+                                styles.primarySquare,
+                                {
+                                    shadowOffset: {
+                                        width: 10,
+                                        height: 10,
                                     },
-                                ]}
-                            >
-                                {item.data}
-                            </View>
-                        ))}
+                                    shadowOpacity: 0.15,
+                                    shadowRadius: 10,
+                                },
+                            ]}
+                        >
+                            <Palette />
+                        </View>
 
                     </View>
                 </View>
-            </View> */}
+                <View style={{ flexDirection: 'column', width: '23rem' }}>
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
+
+                        <View
+                            style={[
+                                styles.primarySquare,
+                                {
+                                    shadowOffset: {
+                                        width: 10,
+                                        height: 10,
+                                    },
+                                    shadowOpacity: 0.15,
+                                    shadowRadius: 10,
+                                },
+                            ]}
+                        >
+                            <ColorPaletteGenerator />
+                        </View>
+                    </View>
+                </View>
+
+                <View style={{ height: '30vh' }} />
+            </View>
+            {/* COLOR PALETTA INSPIRATION */}
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
+                <View style={{ flexDirection: 'column', }}>
+                    <View style={{ flexDirection: 'column', justifyContent: 'center', marginTop: '6vh', width: '90vw' }}>
+                        <Text style={{ color: 'white', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center', textAlign: 'center' }}>Color Palette Inspiration</Text>
+                        <Text style={{ color: '#ff9f1c', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '3vh', alignSelf: 'center', textAlign: 'center', marginTop: '2vh' }}>Click a Color to Copy!</Text>
+                        <View style={{ borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '60vw', alignSelf: 'center', marginTop: '2rem' }} />
+                        <View style={{ alignSelf: 'center', marginTop: '1rem' }}></View>
+                    </View>
+                </View>
+            </View>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
+                <View style={{ flexDirection: 'column', width: '400px', alignSelf: 'center' }}>
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
+                        <ColorPaletteAuto />
+                    </View>
+                </View>
+            </View>
+        </View>
         </>
 
     );

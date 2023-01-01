@@ -41,7 +41,7 @@ export const ConvertTool = () => {
     // Primary Color
     const copyToClipboard = async () => {
         await Clipboard.setStringAsync(result);
-        console.log("copyToClipboard")
+        // console.log("copyToClipboard")
         fetchCopiedText();
     };
 
@@ -53,7 +53,7 @@ export const ConvertTool = () => {
     // Gradient
     const copyGradientToClipboard = async (input) => {
         await Clipboard.setStringAsync(input);
-        console.log("copyToClipboard")
+        // console.log("copyToClipboard")
         fetchGradientCopiedText();
     };
 
