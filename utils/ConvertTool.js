@@ -5,27 +5,6 @@ import { GetColorGradient } from './GetColorGradient';
 import * as Clipboard from 'expo-clipboard';
 import { HeightRatio, Styling, WidthRatio } from '../Styling';
 
-// const windowWidth = Dimensions.get('window').width;
-// const windowHeight = Dimensions.get('window').height;
-
-// const {
-//     width: SCREEN_WIDTH,
-//     height: SCREEN_HEIGHT,
-// } = Dimensions.get('window');
-
-// const scaleWidth = SCREEN_WIDTH / 360;
-// const scaleHeight = SCREEN_HEIGHT / 800;
-
-// const WidthRatio = (size) => {
-//     const newSize = size * scaleWidth;
-//     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-// }
-
-// const HeightRatio = (size) => {
-//     const newSize = size * scaleHeight;
-//     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-// }
-
 export const ConvertTool = () => {
     const [value, setValue] = useState('')
     const [result, setResult] = useState('');
@@ -111,7 +90,7 @@ export const ConvertTool = () => {
                 },
             ]}
         >
-            <View style={{ marginLeft: '3rem', marginRight: '3rem', marginTop: '1rem' }}>
+            <View style={{ marginLeft: HeightRatio(45) , marginRight: HeightRatio(45) , marginTop: HeightRatio(15) }}>
                 <Text style={{...Styling.small_text}}>Convert</Text>
                 <Text style={{...Styling.small_text, fontSize: HeightRatio(12)}}>(HEX, RGB, RGBA)</Text>
 
@@ -136,6 +115,7 @@ export const ConvertTool = () => {
                             value={value}
                             onChangeText={setValue}
                             placeholder="Enter HEX, RGB, or RGBA... "
+                            placeholderTextColor="white"
                             style={{...Styling.text_input}}
                         />
                         <TouchableOpacity
@@ -151,7 +131,8 @@ export const ConvertTool = () => {
                                 onPress={copyToClipboard}
                                 activeOpacity={1}
                                 style={[
-                                    styles.button,
+                                    {padding: 10,
+                                    borderRadius: 5},
                                     isHovered ? Styling.hoveredButton : Styling.normalButton
                                 ]}
                                 onMouseEnter={() => setIsHovered(true)}
@@ -200,10 +181,10 @@ export const ConvertTool = () => {
                         </>
                     ))}
                 </View>
-                <View style={{ alignSelf: 'center', flexDirection: 'column', margin: '1rem' }}>
-                    <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '2.2rem' }}>{gradientCopiedText}</Text>
+                <View style={{ alignSelf: 'center', flexDirection: 'column', margin: HeightRatio(10)  }}>
+                    <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: HeightRatio(34) }}>{gradientCopiedText}</Text>
                     {gradientCopiedText != '' &&
-                        <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center' }}>Copied!</Text>
+                        <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: HeightRatio(15), alignSelf: 'center' }}>Copied!</Text>
                     }
                 </View>
             </View>
@@ -211,33 +192,3 @@ export const ConvertTool = () => {
     )
 }
 
-const styles = StyleSheet.create({
-    button: {
-        padding: 10,
-        borderRadius: 5,
-    },
-    buttonText: {
-        color: '#000',
-        fontSize: 18,
-    },
-    primarySquare: {
-        backgroundColor: 'rgba(255, 255, 255, 0.05)',
-        width: '350px',
-        // height: '13rem',  
-        margin: '0.75rem',
-        borderRadius: '1rem'
-    },
-    square: {
-        backgroundColor: 'rgba(255, 255, 255, 0.05)',
-        width: '80vw',
-        // height: '13rem',
-        margin: '0.75rem',
-        borderRadius: '1rem'
-    },
-    paragraph: {
-        marginVertical: 8,
-        color: 'white', fontFamily: 'Inter_900Black', fontSize: '2vh',
-        width: '78vw',
-        padding: '0.25rem'
-    },
-});

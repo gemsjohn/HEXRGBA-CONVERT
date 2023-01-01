@@ -25,10 +25,11 @@ export const HeightRatio = (size) => {
 export const Styling = StyleSheet.create({
   container: {
     // flex: 1,
-    // backgroundColor: '#181818',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: '6vh'
+    // paddingTop: StatusBar.currentHeight,
+  },
+  scrollView: {
+    // backgroundColor: 'pink',
+    // marginHorizontal: 20,
   },
   content_container: {
     flexDirection: 'row',
@@ -39,7 +40,7 @@ export const Styling = StyleSheet.create({
   heading_0: {
     color: 'white',
     alignSelf: 'center',
-    marginTop: '0.8rem',
+    marginTop: HeightRatio(10),
     fontSize: HeightRatio(38),
     fontWeight: 'bold',
     fontFamily: 'Inter_900Black',
@@ -48,7 +49,7 @@ export const Styling = StyleSheet.create({
   division_line: {
     borderBottomWidth: 1,
     borderBottomColor: '#80ffdb',
-    width: '60vw',
+    width: WidthRatio(200),
     alignSelf: 'center',
     margin: 10
   },
@@ -57,10 +58,9 @@ export const Styling = StyleSheet.create({
   },
   primarySquare: {
     backgroundColor: 'rgba(255, 255, 255, 0.05)',
-    width: '350px',
-    // height: '13rem',  
-    margin: '0.75rem',
-    borderRadius: '1rem'
+    width: HeightRatio(330),
+    margin: HeightRatio(10),
+    borderRadius: HeightRatio(10)
   },
   text_input: {
     outline: 'none',
@@ -79,8 +79,8 @@ export const Styling = StyleSheet.create({
     borderBottomRightRadius: 0,
     alignSelf: 'center',
     marginTop: HeightRatio(5),
-    width: '20rem',
-    fontSize: '18px',
+    width: HeightRatio(270),
+    fontSize: HeightRatio(18),
     fontFamily: 'Inter_900Black'
   },
   button_input: {
@@ -95,7 +95,7 @@ export const Styling = StyleSheet.create({
     borderTopRightRadius: 0,
     borderBottomRightRadius: 30,
     marginBottom: 4,
-    width: '20rem'
+    width: HeightRatio(270)
   },
   small_text: {
     color: 'white',
@@ -104,22 +104,22 @@ export const Styling = StyleSheet.create({
     alignSelf: 'center'
   },
   hoveredButton: {
-    marginBottom: '10px',
+    marginBottom: HeightRatio(10),
     alignSelf: 'center',
     flexDirection: 'column',
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    width: '300px'
+    width: HeightRatio(300)
   },
   normalButton: {
-    marginBottom: '10px',
+    marginBottom: HeightRatio(10),
     alignSelf: 'center',
     flexDirection: 'column',
     width: WidthRatio(300)
   },
   large_color_block: {
-    width: '100px',
+    width: HeightRatio(80),
     alignSelf: 'center',
-    height: '100px',
+    height: HeightRatio(80),
     borderRadius: 6,
     borderWidth: 1,
     borderColor: 'rgba(100, 100, 100, 0.25)',
@@ -134,7 +134,7 @@ export const Styling = StyleSheet.create({
   palette_container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    width: '22rem',
+    width: HeightRatio(300),
     alignSelf: 'center',
     justifyContent: 'center'
   },
@@ -147,11 +147,11 @@ export const Styling = StyleSheet.create({
   circle_palette_box: {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      width: '20rem',
-      margin: '1rem',
+      width: HeightRatio(280),
+      margin: HeightRatio(10),
       borderWidth: 2,
       borderColor: 'white',
-      borderRadius: '1rem'
+      borderRadius: HeightRatio(10)
   },
   circle_color: {
       width: 50,
@@ -160,20 +160,21 @@ export const Styling = StyleSheet.create({
       margin: 10,
   },
   close_button: {
-    height: '4vh',
-    width: '4vh',
+    height: HeightRatio(35),
+    width: HeightRatio(35),
     borderRadius: 10,
     position: 'absolute',
     zIndex: 10,
     backgroundColor: '#ff1654',
-    top: '1vh',
-    left: '-5vh'
+    top: HeightRatio(8),
+    left: HeightRatio(-35)
   },
   red_x: {
     height: 15, 
     width: 15, 
     alignSelf: 'center', 
-    marginTop: '1.3vh', 
-    marginLeft: '0.1vh'
-  }
+    marginTop: HeightRatio(12), 
+    marginLeft: HeightRatio(2)
+  },
+
 });

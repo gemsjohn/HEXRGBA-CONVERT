@@ -46,13 +46,14 @@ export const RandomPalette = () => {
                         onPress={() => { setCopiedCode(''); setPalette(generatePalette()); }}
                         style={{
                             backgroundColor: '#ff1654',
-                            padding: '10px',
+                            padding: HeightRatio(10),
                             border: 'solid',
                             borderColor: 'white',
                             borderWidth: 4,
                             borderRadius: 10,
                             marginBottom: 4,
-                            width: '20rem'
+                            alignSelf: 'center',
+                            width: HeightRatio(270)
                         }}
                     >
                         <Text style={{...Styling.small_text}}>Generate!</Text>
@@ -92,7 +93,7 @@ export const RandomPalette = () => {
 
 const styles = StyleSheet.create({
     container: {
-        margin: '1rem'
+        margin: HeightRatio(15)
     },
 });
 

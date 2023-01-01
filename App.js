@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View, RefreshControl } from 'react-native';
-import { Index } from './Index'
+import { Text, View, SafeAreaView, ScrollView, StatusBar, RefreshControl } from 'react-native';
+import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+import { Index } from './index'
 import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -18,12 +19,21 @@ function HomeScreen({ navigation }) {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
+  let [fontsLoaded] = useFonts({ Inter_900Black, });
+    if (!fontsLoaded) { return null; }
+
   return (
     <LinearGradient
       colors={['#1b262c', '#070707']}
       style={{ opacity: 1, width: '100%', alignSelf: 'center' }}
       start={[0.0, 0.0]} end={[0.75, 0.5]}
     >
+      <StatusBar
+        animated={true}
+        backgroundColor="#80ffdb"
+        barStyle={'dark-content'}
+        showHideTransition={'none'}
+        hidden={false} />
       {/* HEADER */}
       <View style={{
         // height: HeightRatio(1),
@@ -31,21 +41,17 @@ function HomeScreen({ navigation }) {
         alignSelf: 'center'
       }}>
         <Text style={Styling.heading_0}>
-          HEX to RGBA <strong style={Styling.accent_color}>Pro</strong>
+          HEX to RGBA <Text style={Styling.accent_color}>Pro</Text>
         </Text>
         <View style={Styling.division_line} />
       </View>
 
       {/* BODY */}
-      <Index />
-
-      {/* FOOTER */}
-      <View style={Styling.division_line} />
-      <View style={{ alignSelf: 'center', marginTop: HeightRatio(50) }}>
-        <Text style={{ ...Styling.heading_0, fontSize: HeightRatio(20) }}>
-          HEX to RGBA Pro  |  Made with &#x2665;
-        </Text>
-      </View>
+      <SafeAreaView style={Styling.container}>
+        <ScrollView style={Styling.scrollView}>
+          <Index />
+        </ScrollView>
+      </SafeAreaView>
 
       <View style={{ height: HeightRatio(40) }} />
     </LinearGradient>
@@ -70,4 +76,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
 

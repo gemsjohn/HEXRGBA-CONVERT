@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Platform, Linking } from 'react-native';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { ConvertTool } from './utils/ConvertTool';
 import { HarmoniousPalette } from './utils/HarmoniousPalette';
@@ -16,7 +16,7 @@ export const Index = () => {
         <>
             <View style={{ ...Styling.content_container }}>
 
-                <View style={{ flexDirection: 'column', width: '60vw', margin: HeightRatio(10) }}>
+                <View style={{ flexDirection: 'column', width: WidthRatio(300), alignSelf: 'center', margin: HeightRatio(10) }}>
                     <Image
                         source={require('./assets/cycle.png')}
                         style={{
@@ -40,7 +40,7 @@ export const Index = () => {
                     <Text style={{
                         ...Styling.heading_0,
                         fontSize: HeightRatio(20),
-                        width: '85%'
+                        width: WidthRatio(240)
                     }}>
                         Use colors consistently across different platforms and systems, customize the appearance of colors, and work with the color model that is most convenient for you.
                     </Text>
@@ -54,7 +54,7 @@ export const Index = () => {
                         flexDirection: 'column',
                         justifyContent: 'center',
                         marginTop: HeightRatio(10),
-                        width: '90vw'
+                        width: WidthRatio(300)
                     }}>
                         <Text style={Styling.heading_0}>
                             Tools
@@ -96,7 +96,7 @@ export const Index = () => {
                         Click a Color to Copy!
                     </Text>
                     <View style={Styling.division_line} />
-                    <View style={{ alignSelf: 'center', marginTop: '1rem' }}></View>
+                    <View style={{ alignSelf: 'center', marginTop: HeightRatio(14) }}></View>
                 </View>
             </View>
             <View style={{ ...Styling.content_container }}>
@@ -106,6 +106,20 @@ export const Index = () => {
                     </View>
                 </View>
             </View>
+            {/* FOOTER */}
+            <View style={Styling.division_line} />
+            <View style={{ alignSelf: 'center', marginTop: HeightRatio(50) }}>
+                <Text style={{ ...Styling.heading_0, fontSize: HeightRatio(20) }}>
+                HEX to RGBA Pro  |  Made with &#x2665;
+                </Text>
+                {Platform.OS === 'android' &&
+                <Text 
+                    style={{...Styling.small_text, color: '#00e3ff', margin: HeightRatio(10)}}
+                    onPress={() => Linking.openURL('https://hextorgbapro.com/')}
+                > https://hextorgbapro.com/ </Text>
+                }
+            </View>
+            <View style={{height: HeightRatio(500)}} />
         </>
 
     );

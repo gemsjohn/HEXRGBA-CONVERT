@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import { Styling, HeightRatio, WidthRatio } from '../Styling';
 import { hslToRgb, hslToHex, hexToHsl, generatePalette} from '../components/ConversionAlgorithms';
+import { generateCryptoRandomString } from '../components/CryptoRandomString'
 
 export const RandomPaletteArray = () => {
     const [palette, setPalette] = useState([]);
@@ -33,10 +34,6 @@ export const RandomPaletteArray = () => {
         }
 
     }, [])
-    // useEffect(() => {
-    //     console.log(palettes)
-    // }, [palettes])
-
 
     return (
         <>
@@ -66,7 +63,7 @@ export const RandomPaletteArray = () => {
                             <View style={{...Styling.circle_palette_box}} key={i} >
                                 {palettes[i].map((color, index) => (
                                     <TouchableOpacity key={index} onPress={() => copyColorCode(color)}>
-                                        <View key={index} style={[Styling.circle_color, { backgroundColor: color }]} />
+                                        <View style={[Styling.circle_color, { backgroundColor: color }]} />
                                     </TouchableOpacity>
                                 ))}
                             </View>
@@ -80,7 +77,7 @@ export const RandomPaletteArray = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
     },

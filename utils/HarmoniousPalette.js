@@ -47,7 +47,7 @@ export const HarmoniousPalette = () => {
                 },
             ]}
         >
-            <View style={{ marginLeft: '3rem', marginRight: '3rem', marginTop: '1rem' }}>
+            <View style={{ marginLeft: HeightRatio(45) , marginRight: HeightRatio(45) , marginTop: HeightRatio(15) }}>
                 <Text style={{...Styling.small_text}}>Harmonious Palette</Text>
                 <Text style={{...Styling.small_text, fontSize: HeightRatio(12)}}>(HEX, RGB, RGBA)</Text>
 
@@ -73,6 +73,7 @@ export const HarmoniousPalette = () => {
                             value={inputColor}
                             onChangeText={text => setInputColor(text)}
                             placeholder="Enter HEX, RGB, RGBA..."
+                            placeholderTextColor="white"
                             style={{...Styling.text_input}}
                         />
                         <TouchableOpacity
@@ -84,9 +85,12 @@ export const HarmoniousPalette = () => {
                     </View>
 
                     <View style={{ alignSelf: 'center', flexDirection: 'column', margin: HeightRatio(10) }}>
-                        <Text style={{ ...Styling.heading_0 }}>{gradientCopiedText}</Text>
+                        
                         {gradientCopiedText != '' &&
+                            <>
+                            <Text style={{ ...Styling.heading_0 }}>{gradientCopiedText}</Text>
                             <Text style={{ ...Styling.small_text }}>Copied!</Text>
+                            </>
                         }
                     </View>
                     <View style={{ ...Styling.palette_container }}>
