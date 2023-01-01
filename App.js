@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, SafeAreaView, ScrollView, StatusBar, RefreshControl } from 'react-native';
+import { Text, View, SafeAreaView, ScrollView, StatusBar, Platform, RefreshControl } from 'react-native';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { Index } from './index'
 import { LinearGradient } from 'expo-linear-gradient';
@@ -20,7 +20,7 @@ function HomeScreen({ navigation }) {
   }, []);
 
   let [fontsLoaded] = useFonts({ Inter_900Black, });
-    if (!fontsLoaded) { return null; }
+  if (!fontsLoaded) { return null; }
 
   return (
     <LinearGradient
@@ -40,9 +40,17 @@ function HomeScreen({ navigation }) {
         width: WidthRatio(300),
         alignSelf: 'center'
       }}>
-        <Text style={Styling.heading_0}>
-          HEX to RGBA <Text style={Styling.accent_color}>Pro</Text>
+
+        {Platform.OS !== 'android' &&
+          <Text style={Styling.heading_0}>
+            HEX to RGBA <Text style={Styling.accent_color}>Pro</Text>
+          </Text>
+        }
+        {Platform.OS === 'android' &&
+          <Text style={Styling.heading_0}>
+          Color Palette and <Text style={Styling.accent_color}>Converter</Text>
         </Text>
+        }
         <View style={Styling.division_line} />
       </View>
 
