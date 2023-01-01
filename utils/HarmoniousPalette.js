@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Dimensions, PixelRatio, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import color from 'color';
 import * as Clipboard from 'expo-clipboard';
+import { Styling } from '../Styling';
 
 export const HarmoniousPalette = () => {
     const [inputColor, setInputColor] = useState('');
@@ -186,134 +187,148 @@ export const HarmoniousPalette = () => {
     }
 
     return (
-        <View style={{ marginLeft: '3rem', marginRight: '3rem', marginTop: '1rem' }}>
-            <Text style={{
-                fontFamily: 'Inter_900Black',
-                fontSize: '20px',
-                alignSelf: 'center',
-                color: 'white'
-            }}>Harmonious Palette</Text>
-            <Text style={{
-                fontFamily: 'Inter_900Black',
-                fontSize: '12px',
-                alignSelf: 'center',
-                color: 'white'
-            }}>(HEX, RGB, RGBA)</Text>
+        <View
+            style={[
+                Styling.primarySquare,
+                {
+                    shadowOffset: {
+                        width: 10,
+                        height: 10,
+                    },
+                    shadowOpacity: 0.15,
+                    shadowRadius: 10,
+                },
+            ]}
+        >
+            <View style={{ marginLeft: '3rem', marginRight: '3rem', marginTop: '1rem' }}>
+                <Text style={{
+                    fontFamily: 'Inter_900Black',
+                    fontSize: '20px',
+                    alignSelf: 'center',
+                    color: 'white'
+                }}>Harmonious Palette</Text>
+                <Text style={{
+                    fontFamily: 'Inter_900Black',
+                    fontSize: '12px',
+                    alignSelf: 'center',
+                    color: 'white'
+                }}>(HEX, RGB, RGBA)</Text>
 
-            <View style={{}}>
-                {inputColor &&
-                    <TouchableOpacity
-                        onPress={() => {
-                            setInputColor('');
-                            setInputColor('');
-                            setPalette([]);
-                            setGradientCopiedText('');
-                        }}
-                        style={{
-                            height: '4vh',
-                            width: '4vh',
-                            borderRadius: 10,
-                            position: 'absolute',
-                            zIndex: 10,
-                            backgroundColor: '#ff1654',
-                            top: '1vh',
-                            left: '-5vh'
-                        }}>
-                        <Image
-                            source={require('../assets/x.png')}
-                            style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.3vh', marginLeft: '0.1vh' }}
+                <View style={{}}>
+                    {inputColor &&
+                        <TouchableOpacity
+                            onPress={() => {
+                                setInputColor('');
+                                setInputColor('');
+                                setPalette([]);
+                                setGradientCopiedText('');
+                            }}
+                            style={{
+                                height: '4vh',
+                                width: '4vh',
+                                borderRadius: 10,
+                                position: 'absolute',
+                                zIndex: 10,
+                                backgroundColor: '#ff1654',
+                                top: '1vh',
+                                left: '-5vh'
+                            }}>
+                            <Image
+                                source={require('../assets/x.png')}
+                                style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.3vh', marginLeft: '0.1vh' }}
+                            />
+                        </TouchableOpacity>
+                    }
+                    <View style={{ flexDirection: 'column', alignSelf: 'center', margin: 10 }}>
+
+                        <TextInput
+                            value={inputColor}
+                            onChangeText={text => setInputColor(text)}
+                            placeholder="Enter HEX, RGB, RGBA..."
+                            style={{
+                                outline: 'none',
+                                backgroundColor: 'transparent',
+                                color: 'white',
+                                display: 'flex',
+                                justifyContent: 'flex-start',
+                                padding: 30,
+                                border: 'solid',
+                                borderColor: 'white',
+                                borderWidth: 4,
+                                borderBottomWidth: 2,
+                                borderTopLeftRadius: 30,
+                                borderBottomLeftRadius: 0,
+                                borderTopRightRadius: 30,
+                                borderBottomRightRadius: 0,
+                                alignSelf: 'center',
+                                marginTop: 10,
+                                // marginBottom: 4,
+                                width: '20rem',
+                                fontSize: '18px',
+                                fontFamily: 'Inter_900Black'
+                            }}
                         />
-                    </TouchableOpacity>
-                }
-                <View style={{ flexDirection: 'column', alignSelf: 'center', margin: 10 }}>
-
-                    <TextInput
-                        value={inputColor}
-                        onChangeText={text => setInputColor(text)}
-                        placeholder="Enter HEX, RGB, RGBA..."
-                        style={{
-                            outline: 'none',
-                            backgroundColor: 'transparent',
-                            color: 'white',
-                            display: 'flex',
-                            justifyContent: 'flex-start',
-                            padding: 30,
-                            border: 'solid',
-                            borderColor: 'white',
-                            borderWidth: 4,
-                            borderBottomWidth: 2,
-                            borderTopLeftRadius: 30,
-                            borderBottomLeftRadius: 0,
-                            borderTopRightRadius: 30,
-                            borderBottomRightRadius: 0,
-                            alignSelf: 'center',
-                            marginTop: 10,
-                            // marginBottom: 4,
-                            width: '20rem',
-                            fontSize: '18px',
-                            fontFamily: 'Inter_900Black'
-                        }}
-                    />
-                    <TouchableOpacity
-                        onPress={handleGeneratePalette}
-                        style={{
-                            backgroundColor: '#ff1654',
-                            padding: '10px',
-                            border: 'solid',
-                            borderColor: 'white',
-                            borderWidth: 4,
-                            borderTopWidth: 2,
-                            borderTopLeftRadius: 0,
-                            borderBottomLeftRadius: 30,
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 30,
-                            // marginTop: 10,
-                            marginBottom: 4,
-                            width: '20rem'
-                        }}
-                    >
-                        <Text style={{
-                            color: 'white',
-                            marginTop: '0.5vh',
-                            fontSize: '20px',
-                            fontFamily: 'Inter_900Black',
-                            alignSelf: 'center'
-                        }}>Generate!</Text>
-                    </TouchableOpacity>
-                </View>
-                {/* <Button onPress={() => console.log("Generate")} title="Generate Palette" /> */}
-                {/* {palette.map(color => (
+                        <TouchableOpacity
+                            onPress={handleGeneratePalette}
+                            style={{
+                                backgroundColor: '#ff1654',
+                                padding: '10px',
+                                border: 'solid',
+                                borderColor: 'white',
+                                borderWidth: 4,
+                                borderTopWidth: 2,
+                                borderTopLeftRadius: 0,
+                                borderBottomLeftRadius: 30,
+                                borderTopRightRadius: 0,
+                                borderBottomRightRadius: 30,
+                                // marginTop: 10,
+                                marginBottom: 4,
+                                width: '20rem'
+                            }}
+                        >
+                            <Text style={{
+                                color: 'white',
+                                marginTop: '0.5vh',
+                                fontSize: '20px',
+                                fontFamily: 'Inter_900Black',
+                                alignSelf: 'center'
+                            }}>Generate!</Text>
+                        </TouchableOpacity>
+                    </View>
+                    {/* <Button onPress={() => console.log("Generate")} title="Generate Palette" /> */}
+                    {/* {palette.map(color => (
                 <View style={{ backgroundColor: color, height: 50, width: 50 }} />
             ))} */}
 
 
 
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
-                    {palette.map((color) => (
-                        <>
-                            <TouchableOpacity
-                                onPress={() => copyGradientToClipboard(color)} style={{ flexWrap: 'wrap', width: 75, margin: 4 }}
-                                onMouseEnter={() => setIsGradientHovered(true)}
-                                onMouseLeave={() => setIsGradientHovered(false)}
-                                key={color}
-                            >
-                                <View key={color} style={{
-                                    backgroundColor: color,
-                                    height: 50,
-                                    width: 75,
-                                    borderWidth: 1,
-                                    borderRadius: 6,
-                                    borderColor: 'rgba(100, 100, 100, 0.25)',
-                                }}></View>
-                            </TouchableOpacity>
-                        </>
-                    ))}
-                </View>
-                <View style={{ alignSelf: 'center', flexDirection: 'column', margin: '1rem' }}>
-                    <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '2.2rem' }}>{gradientCopiedText}</Text>
-                    {gradientCopiedText != '' &&
-                        <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center' }}>Copied!</Text>
-                    }
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
+                        {palette.map((color) => (
+                            <>
+                                <TouchableOpacity
+                                    onPress={() => copyGradientToClipboard(color)} style={{ flexWrap: 'wrap', width: 75, margin: 4 }}
+                                    onMouseEnter={() => setIsGradientHovered(true)}
+                                    onMouseLeave={() => setIsGradientHovered(false)}
+                                    key={color}
+                                >
+                                    <View key={color} style={{
+                                        backgroundColor: color,
+                                        height: 50,
+                                        width: 75,
+                                        borderWidth: 1,
+                                        borderRadius: 6,
+                                        borderColor: 'rgba(100, 100, 100, 0.25)',
+                                    }}></View>
+                                </TouchableOpacity>
+                            </>
+                        ))}
+                    </View>
+                    <View style={{ alignSelf: 'center', flexDirection: 'column', margin: '1rem' }}>
+                        <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '2.2rem' }}>{gradientCopiedText}</Text>
+                        {gradientCopiedText != '' &&
+                            <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center' }}>Copied!</Text>
+                        }
+                    </View>
                 </View>
             </View>
         </View>

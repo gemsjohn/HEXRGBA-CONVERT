@@ -49,9 +49,17 @@ export const Styling = StyleSheet.create({
         borderBottomWidth: 1, 
         borderBottomColor: '#80ffdb', 
         width: '60vw', 
-        alignSelf: 'center'
+        alignSelf: 'center',
+        margin: 10
     },
     accent_color: {
         color: '#ff9f1c'
-    }
+    },
+    primarySquare: {
+      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+      width: '350px',
+      // height: '13rem',  
+      margin: '0.75rem',
+      borderRadius: '1rem'
+  },
   });

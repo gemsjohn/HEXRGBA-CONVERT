@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
+import { Styling } from '../Styling';
 
 export const RandomPalette = () => {
     const [palette, setPalette] = useState([]);
@@ -201,82 +202,96 @@ export const RandomPalette = () => {
 
     return (
         <>
-            <View style={styles.container}>
-                <Text style={{
-                    fontFamily: 'Inter_900Black',
-                    fontSize: '20px',
-                    alignSelf: 'center',
-                    color: 'white',
-                    marginBottom: '1rem'
-                }}>Random Palette</Text>
-                <Text style={{
-                    fontFamily: 'Inter_900Black',
-                    fontSize: '18px',
-                    alignSelf: 'center',
-                    color: '#ff9f1c',
-                    marginBottom: '1rem'
-                }}>Try it out!</Text>
-                <TouchableOpacity
-                    onPress={() => { setCopiedCode(''); generatePalette(); }}
-                    style={{
-                        backgroundColor: '#ff1654',
-                        padding: '10px',
-                        border: 'solid',
-                        borderColor: 'white',
-                        borderWidth: 4,
-                        borderRadius: 10,
-                        // marginTop: 10,
-                        marginBottom: 4,
-                        width: '20rem'
-                    }}
-                >
+            <View
+                style={[
+                    Styling.primarySquare,
+                    {
+                        shadowOffset: {
+                            width: 10,
+                            height: 10,
+                        },
+                        shadowOpacity: 0.15,
+                        shadowRadius: 10,
+                    },
+                ]}
+            >
+                <View style={styles.container}>
                     <Text style={{
-                        color: 'white',
-                        marginTop: '0.5vh',
-                        fontSize: '18px',
                         fontFamily: 'Inter_900Black',
-                        alignSelf: 'center'
-                    }}>Generate!</Text>
-
-                </TouchableOpacity>
-
-                <View style={styles.palette}>
-                    {palette.map((color, index) => (
-                        <TouchableOpacity key={index} onPress={() => copyColorCode(color)}>
-                            <View style={[styles.color, { backgroundColor: color }]} />
-                        </TouchableOpacity>
-                    ))}
-                </View>
-                <Text style={{
-                    color: 'white',
-                    fontSize: 18,
-                    fontFamily: 'Inter_900Black',
-                    alignSelf: 'center',
-                    marginBottom: '1rem'
-                    // width: '200px'
-                    // margin: '1rem'
-                }}>{copiedCode}</Text>
-                {copiedCode != '' &&
-                    <>
+                        fontSize: '20px',
+                        alignSelf: 'center',
+                        color: 'white',
+                        marginBottom: '1rem'
+                    }}>Random Palette</Text>
+                    <Text style={{
+                        fontFamily: 'Inter_900Black',
+                        fontSize: '18px',
+                        alignSelf: 'center',
+                        color: '#ff9f1c',
+                        marginBottom: '1rem'
+                    }}>Try it out!</Text>
+                    <TouchableOpacity
+                        onPress={() => { setCopiedCode(''); generatePalette(); }}
+                        style={{
+                            backgroundColor: '#ff1654',
+                            padding: '10px',
+                            border: 'solid',
+                            borderColor: 'white',
+                            borderWidth: 4,
+                            borderRadius: 10,
+                            // marginTop: 10,
+                            marginBottom: 4,
+                            width: '20rem'
+                        }}
+                    >
                         <Text style={{
                             color: 'white',
-                            fontSize: 20,
-                            margin: '0.5rem',
+                            marginTop: '0.5vh',
+                            fontSize: '18px',
                             fontFamily: 'Inter_900Black',
                             alignSelf: 'center'
-                        }}>Copied!</Text>
-                        <View style={{
-                            width: '100px',
-                            alignSelf: 'center',
-                            height: '100px',
-                            borderRadius: 6,
-                            borderWidth: 1,
-                            borderColor: 'rgba(100, 100, 100, 0.25)',
-                            backgroundColor: `${copiedCode}`
-                        }}></View>
-                    </>
-                }
+                        }}>Generate!</Text>
 
+                    </TouchableOpacity>
+
+                    <View style={styles.palette}>
+                        {palette.map((color, index) => (
+                            <TouchableOpacity key={index} onPress={() => copyColorCode(color)}>
+                                <View style={[styles.color, { backgroundColor: color }]} />
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+                    <Text style={{
+                        color: 'white',
+                        fontSize: 18,
+                        fontFamily: 'Inter_900Black',
+                        alignSelf: 'center',
+                        marginBottom: '1rem'
+                        // width: '200px'
+                        // margin: '1rem'
+                    }}>{copiedCode}</Text>
+                    {copiedCode != '' &&
+                        <>
+                            <Text style={{
+                                color: 'white',
+                                fontSize: 20,
+                                margin: '0.5rem',
+                                fontFamily: 'Inter_900Black',
+                                alignSelf: 'center'
+                            }}>Copied!</Text>
+                            <View style={{
+                                width: '100px',
+                                alignSelf: 'center',
+                                height: '100px',
+                                borderRadius: 6,
+                                borderWidth: 1,
+                                borderColor: 'rgba(100, 100, 100, 0.25)',
+                                backgroundColor: `${copiedCode}`
+                            }}></View>
+                        </>
+                    }
+
+                </View>
             </View>
         </>
     );
