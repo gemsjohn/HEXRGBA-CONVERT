@@ -138,6 +138,27 @@ export const Styling = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center'
   },
+  circle_palette_container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  circle_palette_box: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      width: '20rem',
+      margin: '1rem',
+      borderWidth: 2,
+      borderColor: 'white',
+      borderRadius: '1rem'
+  },
+  circle_color: {
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+      margin: 10,
+  },
   close_button: {
     height: '4vh',
     width: '4vh',

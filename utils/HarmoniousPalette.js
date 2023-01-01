@@ -3,14 +3,13 @@ import { View, Text, TextInput, Button, Dimensions, PixelRatio, TouchableOpacity
 import color from 'color';
 import * as Clipboard from 'expo-clipboard';
 import { Styling, HeightRatio } from '../Styling';
+import { generateGoldenRatioPalette } from '../components/ConversionAlgorithms';
 
 export const HarmoniousPalette = () => {
     const [inputColor, setInputColor] = useState('');
     const [palette, setPalette] = useState([]);
     const [gradientCopiedText, setGradientCopiedText] = React.useState('');
     const [isGradientHovered, setIsGradientHovered] = useState(false);
-
-
 
     // Gradient
     const copyGradientToClipboard = async (input) => {
@@ -24,158 +23,6 @@ export const HarmoniousPalette = () => {
         setGradientCopiedText(text);
     };
 
-
-
-
-    function generateGoldenRatioPalette(inputColor) {
-
-        if (inputColor.startsWith('#')) {
-            const [r0, g0, b0, a0] = inputColor.match(/\w\w/g).map(x => parseInt(x, 16));
-            let a;
-            // Convert HEX to RGBA
-            const r = parseInt(inputColor.substring(1, 3), 16);
-            const g = parseInt(inputColor.substring(3, 5), 16);
-            const b = parseInt(inputColor.substring(5, 7), 16);
-            if (a0 != undefined) {
-                a = a0;
-            } else {
-                a = 255;
-            }
-
-            // Calculate the golden ratio
-            const phi = (1 + Math.sqrt(5)) / 2;
-
-            // Generate 5 colors based on the golden ratio
-            const color1 = `#${inputColor.substring(1, 7)}`;
-            const color2 = `#${Math.round(r * phi).toString(16)}${Math.round(g * phi).toString(16)}${Math.round(b * phi).toString(16)}`;
-            const color3 = `#${Math.round(r / phi).toString(16)}${Math.round(g / phi).toString(16)}${Math.round(b / phi).toString(16)}`;
-            const color4 = `#${Math.round(r * phi).toString(16)}${Math.round(g / phi).toString(16)}${Math.round(b * phi).toString(16)}`;
-            const color5 = `#${Math.round(r / phi).toString(16)}${Math.round(g * phi).toString(16)}${Math.round(b / phi).toString(16)}`;
-
-            function padHex(hex) {
-                // Check if the HEX value is less than six characters long
-                if (hex.length < 7) {
-                    // Pad the HEX value with leading zeros
-                    return `#${hex.substring(1, 7).padStart(6, '0')}`;
-                }
-                // Check if the HEX value is longer than six characters
-                else if (hex.length > 7) {
-                    // Trim the HEX value to six characters
-                    return `#${hex.substring(1, 7)}`;
-                }
-                // Otherwise, return the HEX value as-is
-                return hex;
-            }
-
-
-            // Check the length of each color and pad with leading zeros if necessary
-            const paddedColor1 = padHex(color1);
-            const paddedColor2 = padHex(color2);
-            const paddedColor3 = padHex(color3);
-            const paddedColor4 = padHex(color4);
-            const paddedColor5 = padHex(color5);
-
-            // Return the array of padded colors
-            return [paddedColor1, paddedColor2, paddedColor3, paddedColor4, paddedColor5];
-
-        } else if (inputColor.startsWith('rgba')) {
-            // Convert RGBA to HEX
-            const parts = inputColor.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
-            const r0 = parseInt(parts[1]).toString(16).padStart(2, '0');
-            const g0 = parseInt(parts[2]).toString(16).padStart(2, '0');
-            const b0 = parseInt(parts[3]).toString(16).padStart(2, '0');
-            const newHex = `#${r0}${g0}${b0}`;
-
-            const r = parseInt(newHex.substring(1, 3), 16);
-            const g = parseInt(newHex.substring(3, 5), 16);
-            const b = parseInt(newHex.substring(5, 7), 16);
-            const a = 1; // Assume full opacity
-
-            // Calculate the golden ratio
-            const phi = (1 + Math.sqrt(5)) / 2;
-
-            // Generate 5 colors based on the golden ratio
-            const color1 = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
-            const color2 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
-            const color3 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b / phi).toString(16).padStart(2, '0')}`;
-            const color4 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
-            const color5 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
-
-            function padHex(hex) {
-                // Check if the HEX value is less than six characters long
-                if (hex.length < 7) {
-                    // Pad the HEX value with leading zeros
-                    return `#${hex.substring(1, 7).padStart(6, '0')}`;
-                }
-                // Check if the HEX value is longer than six characters
-                else if (hex.length > 7) {
-                    // Trim the HEX value to six characters
-                    return `#${hex.substring(1, 7)}`;
-                }
-                // Otherwise, return the HEX value as-is
-                return hex;
-            }
-
-
-            // Check the length of each color and pad with leading zeros if necessary
-            const paddedColor1 = padHex(color1);
-            const paddedColor2 = padHex(color2);
-            const paddedColor3 = padHex(color3);
-            const paddedColor4 = padHex(color4);
-            const paddedColor5 = padHex(color5);
-
-            // Return the array of padded colors
-            return [paddedColor1, paddedColor2, paddedColor3, paddedColor4, paddedColor5];
-        } else if (inputColor.startsWith('rgb')) {
-            // Convert RGBA to HEX
-            const parts = inputColor.match(/^rgb?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/);
-            const r0 = parseInt(parts[1]).toString(16).padStart(2, '0');
-            const g0 = parseInt(parts[2]).toString(16).padStart(2, '0');
-            const b0 = parseInt(parts[3]).toString(16).padStart(2, '0');
-            const newHex = `#${r0}${g0}${b0}`;
-
-            const r = parseInt(newHex.substring(1, 3), 16);
-            const g = parseInt(newHex.substring(3, 5), 16);
-            const b = parseInt(newHex.substring(5, 7), 16);
-            const a = 1; // Assume full opacity
-
-            // Calculate the golden ratio
-            const phi = (1 + Math.sqrt(5)) / 2;
-
-            // Generate 5 colors based on the golden ratio
-            const color1 = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
-            const color2 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
-            const color3 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b / phi).toString(16).padStart(2, '0')}`;
-            const color4 = `#${Math.round(r * phi).toString(16).padStart(2, '0')}${Math.round(g / phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
-            const color5 = `#${Math.round(r / phi).toString(16).padStart(2, '0')}${Math.round(g * phi).toString(16).padStart(2, '0')}${Math.round(b * phi).toString(16).padStart(2, '0')}`;
-
-            function padHex(hex) {
-                // Check if the HEX value is less than six characters long
-                if (hex.length < 7) {
-                    // Pad the HEX value with leading zeros
-                    return `#${hex.substring(1, 7).padStart(6, '0')}`;
-                }
-                // Check if the HEX value is longer than six characters
-                else if (hex.length > 7) {
-                    // Trim the HEX value to six characters
-                    return `#${hex.substring(1, 7)}`;
-                }
-                // Otherwise, return the HEX value as-is
-                return hex;
-            }
-
-
-            // Check the length of each color and pad with leading zeros if necessary
-            const paddedColor1 = padHex(color1);
-            const paddedColor2 = padHex(color2);
-            const paddedColor3 = padHex(color3);
-            const paddedColor4 = padHex(color4);
-            const paddedColor5 = padHex(color5);
-
-            // Return the array of padded colors
-            return [paddedColor1, paddedColor2, paddedColor3, paddedColor4, paddedColor5];
-        }
-    }
 
     function handleGeneratePalette() {
         if (inputColor.startsWith('#') || inputColor.startsWith('rgba') || inputColor.startsWith('rgb')) {
