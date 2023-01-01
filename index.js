@@ -31,7 +31,7 @@ const HeightRatio = (size) => {
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
 }
 
-export const Convert = () => {
+export const Index = () => {
     const data = [
         {
             data:
