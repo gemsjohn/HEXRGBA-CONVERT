@@ -117,11 +117,11 @@ export const Convert = () => {
         <View style={{}}>
             <View style={{ maxWidth: '100vw', flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
 
-                <View style={{ flexDirection: 'column', width: '25rem', margin: '2rem', }}>
+                <View style={{ flexDirection: 'column', width: '60vw', margin: '2rem', }}>
                     <Image source={require('./assets/cycle.png')} style={{ height: '40vh', width: '40vh', justifyContent: 'center', alignSelf: 'center' }} />
 
                 </View>
-                <View style={{ flexDirection: 'column', width: '24rem', margin: '2rem' }}>
+                <View style={{ flexDirection: 'column', width: '60vw', margin: '2rem' }}>
                     <Text style={{ color: 'white', marginTop: '0.8rem', fontSize: '50px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', alignSelf: 'center' }}>Jump from HEX to RGBA to color palette!</Text>
                     <Text style={{ color: 'white', fontSize: '18px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', width: '90%', marginTop: '10px', alignSelf: 'center' }}>
                         Use colors consistently across different platforms and systems, customize the appearance of colors, and work with the color model that is most convenient for you.
@@ -138,14 +138,14 @@ export const Convert = () => {
                     </View>
                 </View>
             </View>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                <View style={{ flexDirection: 'column', width: '23rem', alignSelf: 'center' }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center', width: '60vw' }}>
+                <View style={{ flexDirection: 'column', alignSelf: 'center' }}>
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
                         <ConvertTool />
                     </View>
 
                 </View>
-                <View style={{ flexDirection: 'column', width: '23rem', alignSelf: 'center' }}>
+                <View style={{ flexDirection: 'column', alignSelf: 'center' }}>
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
                         <View
                             style={[
@@ -165,7 +165,7 @@ export const Convert = () => {
 
                     </View>
                 </View>
-                <View style={{ flexDirection: 'column', width: '23rem' }}>
+                <View style={{ flexDirection: 'column', }}>
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
 
                         <View
@@ -186,12 +186,12 @@ export const Convert = () => {
                     </View>
                 </View>
 
-                <View style={{ height: '30vh' }} />
+                <View style={{ height: '2vh' }} />
             </View>
             {/* COLOR PALETTA INSPIRATION */}
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
                 <View style={{ flexDirection: 'column', }}>
-                    <View style={{ flexDirection: 'column', justifyContent: 'center', marginTop: '6vh', width: '90vw' }}>
+                    <View style={{ flexDirection: 'column', justifyContent: 'center', marginTop: '6vh', width: '60vw' }}>
                         <Text style={{ color: 'white', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center', textAlign: 'center' }}>Color Palette Inspiration</Text>
                         <Text style={{ color: '#ff9f1c', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '3vh', alignSelf: 'center', textAlign: 'center', marginTop: '2vh' }}>Click a Color to Copy!</Text>
                         <View style={{ borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '60vw', alignSelf: 'center', marginTop: '2rem' }} />
@@ -200,7 +200,7 @@ export const Convert = () => {
                 </View>
             </View>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
-                <View style={{ flexDirection: 'column', width: '400px', alignSelf: 'center' }}>
+                <View style={{ flexDirection: 'column', alignSelf: 'center' }}>
                     <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
                         <ColorPaletteAuto />
                     </View>
