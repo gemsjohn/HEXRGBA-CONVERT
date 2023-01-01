@@ -51,7 +51,7 @@ function HomeScreen({ navigation }) {
         <View >
 
           <View style={{ height: '4rem', width: '90vw', alignSelf: 'center' }}>
-            <Text style={{ color: 'white', alignSelf: 'center', marginTop: '0.8rem', fontSize: '4vw', fontWeight: 'bold', fontFamily: 'Inter_900Black', }}>HEX to RGBA <strong style={{color: '#ff9f1c'}}>Pro</strong></Text>
+            <Text style={{ color: 'white', alignSelf: 'center', marginTop: '0.8rem', fontSize: '40px', fontWeight: 'bold', fontFamily: 'Inter_900Black', }}>HEX to RGBA <strong style={{color: '#ff9f1c'}}>Pro</strong></Text>
             <View style={{borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '60vw', alignSelf: 'center'}} />
           </View>
           {/* <View style={{alignSelf: 'center', }}>

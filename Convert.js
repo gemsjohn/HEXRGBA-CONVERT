@@ -122,7 +122,7 @@ export const Convert = () => {
 
                 </View>
                 <View style={{ flexDirection: 'column', width: '60vw', margin: '2rem' }}>
-                    <Text style={{ color: 'white', marginTop: '0.8rem', fontSize: '50px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', alignSelf: 'center' }}>Jump from HEX to RGBA to color palette!</Text>
+                    <Text style={{ color: 'white', marginTop: '0.8rem', fontSize: '40px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', alignSelf: 'center' }}>Jump from HEX to RGBA to color palette!</Text>
                     <Text style={{ color: 'white', fontSize: '18px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', width: '90%', marginTop: '10px', alignSelf: 'center' }}>
                         Use colors consistently across different platforms and systems, customize the appearance of colors, and work with the color model that is most convenient for you.
                     </Text>
@@ -132,7 +132,7 @@ export const Convert = () => {
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
                 <View style={{ flexDirection: 'column', }}>
                     <View style={{ flexDirection: 'column', justifyContent: 'center', marginTop: '4vh', width: '90vw' }}>
-                        <Text style={{ color: 'white', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '4vh', alignSelf: 'center', textAlign: 'center' }}>Tools</Text>
+                        <Text style={{ color: 'white', fontWeight: 'bold', fontFamily: 'Inter_900Black', fontSize: '50px', alignSelf: 'center', textAlign: 'center' }}>Tools</Text>
                         <View style={{borderBottomWidth: 1, borderBottomColor: '#80ffdb', width: '60vw', alignSelf: 'center', marginTop: '2rem'}} />
                         <View style={{ alignSelf: 'center', marginTop: '1rem' }}></View>
                     </View>

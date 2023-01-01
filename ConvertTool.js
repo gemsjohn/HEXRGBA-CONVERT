@@ -177,7 +177,7 @@ export const ConvertTool = () => {
                                 marginTop: 10,
                                 // marginBottom: 4,
                                 width: '20rem',
-                                fontSize: '1.8vh',
+                                fontSize: '4vw',
                                 fontFamily: 'Inter_900Black'
                             }}
                         />
