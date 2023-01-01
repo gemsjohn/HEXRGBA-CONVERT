@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 
-export const ColorPaletteGenerator = () => {
+export const RandomPaletteArray = () => {
     const [palette, setPalette] = useState([]);
     const [copiedCode, setCopiedCode] = useState('');
+    const [palettes, setPalettes] = useState([]); // New state variable to store generated palettes
 
     const generatePalette = () => {
         const hexValues = Array.from({ length: 20 }).map(() => {
@@ -78,6 +79,7 @@ export const ColorPaletteGenerator = () => {
             paletteColors = [color1, color2];
         }
 
+
         // Generate random colors based on golden ratio
         const goldenRatio = 0.618033988749895;
         let h = Math.random();
@@ -93,7 +95,7 @@ export const ColorPaletteGenerator = () => {
 
         paletteColors = paletteColors.slice(0, 8);
 
-        setPalette(paletteColors);
+        setPalettes(previous => [...previous, paletteColors])
     };
 
     const hslToRgb = (h, s, l) => {
@@ -185,8 +187,6 @@ export const ColorPaletteGenerator = () => {
         return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
     };
 
-
-
     const copyColorCode = async (color) => {
         // Clipboard.setString(color);
         await Clipboard.setStringAsync(color);
@@ -198,55 +198,25 @@ export const ColorPaletteGenerator = () => {
         setCopiedCode(color);
     };
 
+    const HandleDisplayPalettes = () => {
+
+    }
+
+    useEffect(() => {
+
+        for (let i = 0; i < 10; i++) {
+            generatePalette()
+        }
+
+    }, [])
+    // useEffect(() => {
+    //     console.log(palettes)
+    // }, [palettes])
+
 
     return (
         <>
             <View style={styles.container}>
-                <Text style={{
-                    fontFamily: 'Inter_900Black',
-                    fontSize: '20px',
-                    alignSelf: 'center',
-                    color: 'white',
-                    marginBottom: '1rem'
-                }}>Random Palette</Text>
-                <Text style={{
-                    fontFamily: 'Inter_900Black',
-                    fontSize: '18px',
-                    alignSelf: 'center',
-                    color: '#ff9f1c',
-                    marginBottom: '1rem'
-                }}>Try it out!</Text>
-                <TouchableOpacity
-                    onPress={() => { setCopiedCode(''); generatePalette(); }}
-                    style={{
-                        backgroundColor: '#ff1654',
-                        padding: '10px',
-                        border: 'solid',
-                        borderColor: 'white',
-                        borderWidth: 4,
-                        borderRadius: 10,
-                        // marginTop: 10,
-                        marginBottom: 4,
-                        width: '20rem'
-                    }}
-                >
-                    <Text style={{
-                        color: 'white',
-                        marginTop: '0.5vh',
-                        fontSize: '18px',
-                        fontFamily: 'Inter_900Black',
-                        alignSelf: 'center'
-                    }}>Generate!</Text>
-
-                </TouchableOpacity>
-
-                <View style={styles.palette}>
-                    {palette.map((color, index) => (
-                        <TouchableOpacity key={index} onPress={() => copyColorCode(color)}>
-                            <View style={[styles.color, { backgroundColor: color }]} />
-                        </TouchableOpacity>
-                    ))}
-                </View>
                 <Text style={{
                     color: 'white',
                     fontSize: 18,
@@ -276,25 +246,39 @@ export const ColorPaletteGenerator = () => {
                         }}></View>
                     </>
                 }
+                <View style={styles.palette}>
+                    {palettes.map((num, i) => (
+                        <>
+                            <View style={styles.paletteBox} key={i} >
+                                {palettes[i].map((color, index) => (
+                                    <TouchableOpacity key={index} onPress={() => copyColorCode(color)}>
+                                        <View key={index} style={[styles.color, { backgroundColor: color }]} />
+                                    </TouchableOpacity>
+                                ))}
+                            </View>
+                        </>
+                    ))}
+                </View>
+
 
             </View>
+            <View style={{ height: '20rem' }} />
         </>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        // alignItems: 'center',
-        // justifyContent: 'center',
-        // alignSelf: 'center',
-        margin: '1rem'
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     palette: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center',
+        width: '90vw'
     },
     color: {
         width: 50,
@@ -306,6 +290,15 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontSize: 16,
     },
+    paletteBox: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        width: '20rem',
+        margin: '1rem',
+        borderWidth: 2,
+        borderColor: 'white',
+        borderRadius: '1rem'
+    }
 });
 
 

@@ -30,13 +30,20 @@ export const Styling = StyleSheet.create({
       justifyContent: 'center',
       marginTop: '6vh'
     },
+    content_container: {
+      flexDirection: 'row', 
+      flexWrap: 'wrap', 
+      alignSelf: 'center', 
+      justifyContent: 'center'
+    },
     heading_0: {
         color: 'white', 
         alignSelf: 'center', 
         marginTop: '0.8rem', 
         fontSize: HeightRatio(38), 
         fontWeight: 'bold', 
-        fontFamily: 'Inter_900Black'
+        fontFamily: 'Inter_900Black',
+        textAlign: 'center'
     },
     division_line: {
         borderBottomWidth: 1, 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, Dimensions, PixelRatio, TouchableOpacity, StyleSheet, Image, Color } from 'react-native';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-import { GetColorGradient } from './utils/GetColorGradient';
+import { GetColorGradient } from './GetColorGradient';
 import * as Clipboard from 'expo-clipboard';
 
 const windowWidth = Dimensions.get('window').width;
@@ -148,7 +148,7 @@ export const ConvertTool = () => {
                                 left: '-5vh'
                             }}>
                             <Image
-                                source={require('./assets/x.png')}
+                                source={require('../assets/x.png')}
                                 style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.3vh', marginLeft: '0.1vh' }}
                             />
                         </TouchableOpacity>

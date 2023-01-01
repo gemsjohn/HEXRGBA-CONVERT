@@ -26,8 +26,8 @@ function HomeScreen({ navigation }) {
     >
       {/* HEADER */}
       <View style={{
-        height: '4rem',
-        width: '90vw',
+        // height: HeightRatio(1),
+        width: WidthRatio(300),
         alignSelf: 'center'
       }}>
         <Text style={Styling.heading_0}>
@@ -41,7 +41,7 @@ function HomeScreen({ navigation }) {
 
       {/* FOOTER */}
       <View style={Styling.division_line} />
-      <View style={{ alignSelf: 'center', marginTop: '1rem' }}>
+      <View style={{ alignSelf: 'center', marginTop: HeightRatio(50) }}>
         <Text style={{ ...Styling.heading_0, fontSize: HeightRatio(20) }}>
           HEX to RGBA Pro  |  Made with &#x2665;
         </Text>
