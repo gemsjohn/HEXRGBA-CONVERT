@@ -118,7 +118,7 @@ export const Convert = () => {
             <View style={{ maxWidth: '100vw', flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'center', justifyContent: 'center' }}>
 
                 <View style={{ flexDirection: 'column', width: '60vw', margin: '2rem', }}>
-                    <Image source={require('./assets/cycle.png')} style={{ height: '40vh', width: '40vh', justifyContent: 'center', alignSelf: 'center' }} />
+                    <Image source={require('./assets/cycle.png')} style={{ height: '10rem', width: '10rem', justifyContent: 'center', alignSelf: 'center' }} />
 
                 </View>
                 <View style={{ flexDirection: 'column', width: '60vw', margin: '2rem' }}>
