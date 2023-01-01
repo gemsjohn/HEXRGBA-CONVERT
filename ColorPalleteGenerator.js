@@ -233,7 +233,7 @@ export const ColorPaletteGenerator = () => {
                     <Text style={{
                         color: 'white',
                         marginTop: '0.5vh',
-                        fontSize: '2vh',
+                        fontSize: '3vw',
                         fontFamily: 'Inter_900Black',
                         alignSelf: 'center'
                     }}>Generate!</Text>

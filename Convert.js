@@ -123,7 +123,7 @@ export const Convert = () => {
                 </View>
                 <View style={{ flexDirection: 'column', width: '24rem', margin: '2rem' }}>
                     <Text style={{ color: 'white', marginTop: '0.8rem', fontSize: '50px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', alignSelf: 'center' }}>Jump from HEX to RGBA to color palette!</Text>
-                    <Text style={{ color: 'white', marginTop: '0.8rem', fontSize: '18px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', width: '90%', marginTop: '10px', alignSelf: 'center' }}>
+                    <Text style={{ color: 'white', fontSize: '18px', fontWeight: 'bold', textAlign: 'center', fontFamily: 'Inter_900Black', width: '90%', marginTop: '10px', alignSelf: 'center' }}>
                         Use colors consistently across different platforms and systems, customize the appearance of colors, and work with the color model that is most convenient for you.
                     </Text>
                 </View>
