@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Dimensions, PixelRatio, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import color from 'color';
 import * as Clipboard from 'expo-clipboard';
-import { Styling } from '../Styling';
+import { Styling, HeightRatio } from '../Styling';
 
 export const HarmoniousPalette = () => {
     const [inputColor, setInputColor] = useState('');
@@ -201,18 +201,8 @@ export const HarmoniousPalette = () => {
             ]}
         >
             <View style={{ marginLeft: '3rem', marginRight: '3rem', marginTop: '1rem' }}>
-                <Text style={{
-                    fontFamily: 'Inter_900Black',
-                    fontSize: '20px',
-                    alignSelf: 'center',
-                    color: 'white'
-                }}>Harmonious Palette</Text>
-                <Text style={{
-                    fontFamily: 'Inter_900Black',
-                    fontSize: '12px',
-                    alignSelf: 'center',
-                    color: 'white'
-                }}>(HEX, RGB, RGBA)</Text>
+                <Text style={{...Styling.small_text}}>Harmonious Palette</Text>
+                <Text style={{...Styling.small_text, fontSize: HeightRatio(12)}}>(HEX, RGB, RGBA)</Text>
 
                 <View style={{}}>
                     {inputColor &&
@@ -223,19 +213,10 @@ export const HarmoniousPalette = () => {
                                 setPalette([]);
                                 setGradientCopiedText('');
                             }}
-                            style={{
-                                height: '4vh',
-                                width: '4vh',
-                                borderRadius: 10,
-                                position: 'absolute',
-                                zIndex: 10,
-                                backgroundColor: '#ff1654',
-                                top: '1vh',
-                                left: '-5vh'
-                            }}>
+                            style={{...Styling.close_button}}>
                             <Image
                                 source={require('../assets/x.png')}
-                                style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.3vh', marginLeft: '0.1vh' }}
+                                style={{ ...Styling.red_x }}
                             />
                         </TouchableOpacity>
                     }
@@ -245,64 +226,23 @@ export const HarmoniousPalette = () => {
                             value={inputColor}
                             onChangeText={text => setInputColor(text)}
                             placeholder="Enter HEX, RGB, RGBA..."
-                            style={{
-                                outline: 'none',
-                                backgroundColor: 'transparent',
-                                color: 'white',
-                                display: 'flex',
-                                justifyContent: 'flex-start',
-                                padding: 30,
-                                border: 'solid',
-                                borderColor: 'white',
-                                borderWidth: 4,
-                                borderBottomWidth: 2,
-                                borderTopLeftRadius: 30,
-                                borderBottomLeftRadius: 0,
-                                borderTopRightRadius: 30,
-                                borderBottomRightRadius: 0,
-                                alignSelf: 'center',
-                                marginTop: 10,
-                                // marginBottom: 4,
-                                width: '20rem',
-                                fontSize: '18px',
-                                fontFamily: 'Inter_900Black'
-                            }}
+                            style={{...Styling.text_input}}
                         />
                         <TouchableOpacity
                             onPress={handleGeneratePalette}
-                            style={{
-                                backgroundColor: '#ff1654',
-                                padding: '10px',
-                                border: 'solid',
-                                borderColor: 'white',
-                                borderWidth: 4,
-                                borderTopWidth: 2,
-                                borderTopLeftRadius: 0,
-                                borderBottomLeftRadius: 30,
-                                borderTopRightRadius: 0,
-                                borderBottomRightRadius: 30,
-                                // marginTop: 10,
-                                marginBottom: 4,
-                                width: '20rem'
-                            }}
+                            style={{...Styling.button_input}}
                         >
-                            <Text style={{
-                                color: 'white',
-                                marginTop: '0.5vh',
-                                fontSize: '20px',
-                                fontFamily: 'Inter_900Black',
-                                alignSelf: 'center'
-                            }}>Generate!</Text>
+                            <Text style={{...Styling.small_text}}>Generate!</Text>
                         </TouchableOpacity>
                     </View>
-                    {/* <Button onPress={() => console.log("Generate")} title="Generate Palette" /> */}
-                    {/* {palette.map(color => (
-                <View style={{ backgroundColor: color, height: 50, width: 50 }} />
-            ))} */}
 
-
-
-                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
+                    <View style={{ alignSelf: 'center', flexDirection: 'column', margin: HeightRatio(10) }}>
+                        <Text style={{ ...Styling.heading_0 }}>{gradientCopiedText}</Text>
+                        {gradientCopiedText != '' &&
+                            <Text style={{ ...Styling.small_text }}>Copied!</Text>
+                        }
+                    </View>
+                    <View style={{ ...Styling.palette_container }}>
                         {palette.map((color) => (
                             <>
                                 <TouchableOpacity
@@ -313,22 +253,13 @@ export const HarmoniousPalette = () => {
                                 >
                                     <View key={color} style={{
                                         backgroundColor: color,
-                                        height: 50,
-                                        width: 75,
-                                        borderWidth: 1,
-                                        borderRadius: 6,
-                                        borderColor: 'rgba(100, 100, 100, 0.25)',
+                                        ...Styling.small_color_block
                                     }}></View>
                                 </TouchableOpacity>
                             </>
                         ))}
                     </View>
-                    <View style={{ alignSelf: 'center', flexDirection: 'column', margin: '1rem' }}>
-                        <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '2.2rem' }}>{gradientCopiedText}</Text>
-                        {gradientCopiedText != '' &&
-                            <Text style={{ color: 'white', fontFamily: 'Inter_900Black', fontSize: '1rem', alignSelf: 'center' }}>Copied!</Text>
-                        }
-                    </View>
+                    
                 </View>
             </View>
         </View>

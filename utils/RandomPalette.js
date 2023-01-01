@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
-import { Styling } from '../Styling';
+import { HeightRatio, Styling } from '../Styling';
 
 export const RandomPalette = () => {
     const [palette, setPalette] = useState([]);
@@ -216,20 +216,8 @@ export const RandomPalette = () => {
                 ]}
             >
                 <View style={styles.container}>
-                    <Text style={{
-                        fontFamily: 'Inter_900Black',
-                        fontSize: '20px',
-                        alignSelf: 'center',
-                        color: 'white',
-                        marginBottom: '1rem'
-                    }}>Random Palette</Text>
-                    <Text style={{
-                        fontFamily: 'Inter_900Black',
-                        fontSize: '18px',
-                        alignSelf: 'center',
-                        color: '#ff9f1c',
-                        marginBottom: '1rem'
-                    }}>Try it out!</Text>
+                    <Text style={{...Styling.small_text}}>Random Palette</Text>
+                    <Text style={{...Styling.small_text, ...Styling.accent_color, margin: HeightRatio(10)}}>Try it out!</Text>
                     <TouchableOpacity
                         onPress={() => { setCopiedCode(''); generatePalette(); }}
                         style={{
@@ -239,28 +227,13 @@ export const RandomPalette = () => {
                             borderColor: 'white',
                             borderWidth: 4,
                             borderRadius: 10,
-                            // marginTop: 10,
                             marginBottom: 4,
                             width: '20rem'
                         }}
                     >
-                        <Text style={{
-                            color: 'white',
-                            marginTop: '0.5vh',
-                            fontSize: '18px',
-                            fontFamily: 'Inter_900Black',
-                            alignSelf: 'center'
-                        }}>Generate!</Text>
+                        <Text style={{...Styling.small_text}}>Generate!</Text>
 
                     </TouchableOpacity>
-
-                    <View style={styles.palette}>
-                        {palette.map((color, index) => (
-                            <TouchableOpacity key={index} onPress={() => copyColorCode(color)}>
-                                <View style={[styles.color, { backgroundColor: color }]} />
-                            </TouchableOpacity>
-                        ))}
-                    </View>
                     <Text style={{
                         color: 'white',
                         fontSize: 18,
@@ -290,6 +263,15 @@ export const RandomPalette = () => {
                             }}></View>
                         </>
                     }
+
+                    <View style={styles.palette}>
+                        {palette.map((color, index) => (
+                            <TouchableOpacity key={index} onPress={() => copyColorCode(color)}>
+                                <View style={[styles.color, { backgroundColor: color }]} />
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+                    
 
                 </View>
             </View>

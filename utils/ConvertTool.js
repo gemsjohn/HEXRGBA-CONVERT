@@ -3,27 +3,28 @@ import { View, Text, TextInput, Button, Dimensions, PixelRatio, TouchableOpacity
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { GetColorGradient } from './GetColorGradient';
 import * as Clipboard from 'expo-clipboard';
+import { HeightRatio, Styling, WidthRatio } from '../Styling';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+// const windowWidth = Dimensions.get('window').width;
+// const windowHeight = Dimensions.get('window').height;
 
-const {
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT,
-} = Dimensions.get('window');
+// const {
+//     width: SCREEN_WIDTH,
+//     height: SCREEN_HEIGHT,
+// } = Dimensions.get('window');
 
-const scaleWidth = SCREEN_WIDTH / 360;
-const scaleHeight = SCREEN_HEIGHT / 800;
+// const scaleWidth = SCREEN_WIDTH / 360;
+// const scaleHeight = SCREEN_HEIGHT / 800;
 
-const WidthRatio = (size) => {
-    const newSize = size * scaleWidth;
-    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-}
+// const WidthRatio = (size) => {
+//     const newSize = size * scaleWidth;
+//     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+// }
 
-const HeightRatio = (size) => {
-    const newSize = size * scaleHeight;
-    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-}
+// const HeightRatio = (size) => {
+//     const newSize = size * scaleHeight;
+//     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+// }
 
 export const ConvertTool = () => {
     const [value, setValue] = useState('')
@@ -41,7 +42,6 @@ export const ConvertTool = () => {
     // Primary Color
     const copyToClipboard = async () => {
         await Clipboard.setStringAsync(result);
-        // console.log("copyToClipboard")
         fetchCopiedText();
     };
 
@@ -53,7 +53,6 @@ export const ConvertTool = () => {
     // Gradient
     const copyGradientToClipboard = async (input) => {
         await Clipboard.setStringAsync(input);
-        // console.log("copyToClipboard")
         fetchGradientCopiedText();
     };
 
@@ -99,11 +98,9 @@ export const ConvertTool = () => {
     };
 
     return (
-
         <View
-
             style={[
-                styles.primarySquare,
+                Styling.primarySquare,
                 {
                     shadowOffset: {
                         width: 10,
@@ -115,18 +112,8 @@ export const ConvertTool = () => {
             ]}
         >
             <View style={{ marginLeft: '3rem', marginRight: '3rem', marginTop: '1rem' }}>
-                <Text style={{
-                    fontFamily: 'Inter_900Black',
-                    fontSize: '20px',
-                    alignSelf: 'center',
-                    color: 'white'
-                }}>Convert</Text>
-                <Text style={{
-                    fontFamily: 'Inter_900Black',
-                    fontSize: '12px',
-                    alignSelf: 'center',
-                    color: 'white'
-                }}>(HEX, RGB, RGBA)</Text>
+                <Text style={{...Styling.small_text}}>Convert</Text>
+                <Text style={{...Styling.small_text, fontSize: HeightRatio(12)}}>(HEX, RGB, RGBA)</Text>
 
                 <View style={{}}>
                     {value &&
@@ -137,19 +124,10 @@ export const ConvertTool = () => {
                                 setGradient([]);
                                 setGradientCopiedText('');
                             }}
-                            style={{
-                                height: '4vh',
-                                width: '4vh',
-                                borderRadius: 10,
-                                position: 'absolute',
-                                zIndex: 10,
-                                backgroundColor: '#ff1654',
-                                top: '1vh',
-                                left: '-5vh'
-                            }}>
+                            style={{...Styling.close_button}}>
                             <Image
                                 source={require('../assets/x.png')}
-                                style={{ height: 15, width: 15, alignSelf: 'center', marginTop: '1.3vh', marginLeft: '0.1vh' }}
+                                style={{ ...Styling.red_x }}
                             />
                         </TouchableOpacity>
                     }
@@ -158,54 +136,13 @@ export const ConvertTool = () => {
                             value={value}
                             onChangeText={setValue}
                             placeholder="Enter HEX, RGB, or RGBA... "
-                            style={{
-                                outline: 'none',
-                                backgroundColor: 'transparent',
-                                color: 'white',
-                                display: 'flex',
-                                justifyContent: 'flex-start',
-                                padding: 30,
-                                border: 'solid',
-                                borderColor: 'white',
-                                borderWidth: 4,
-                                borderBottomWidth: 2,
-                                borderTopLeftRadius: 30,
-                                borderBottomLeftRadius: 0,
-                                borderTopRightRadius: 30,
-                                borderBottomRightRadius: 0,
-                                alignSelf: 'center',
-                                marginTop: 10,
-                                // marginBottom: 4,
-                                width: '20rem',
-                                fontSize: '18px',
-                                fontFamily: 'Inter_900Black'
-                            }}
+                            style={{...Styling.text_input}}
                         />
                         <TouchableOpacity
                             onPress={() => handleConvert()}
-                            style={{
-                                backgroundColor: '#ff1654',
-                                padding: '10px',
-                                border: 'solid',
-                                borderColor: 'white',
-                                borderWidth: 4,
-                                borderTopWidth: 2,
-                                borderTopLeftRadius: 0,
-                                borderBottomLeftRadius: 30,
-                                borderTopRightRadius: 0,
-                                borderBottomRightRadius: 30,
-                                // marginTop: 10,
-                                marginBottom: 4,
-                                width: '20rem'
-                            }}
+                            style={{...Styling.button_input}}
                         >
-                            <Text style={{
-                                color: 'white',
-                                marginTop: '0.5vh',
-                                fontSize: '18px',
-                                fontFamily: 'Inter_900Black',
-                                alignSelf: 'center'
-                            }}>Swap!</Text>
+                            <Text style={{...Styling.small_text}}>Swap!</Text>
                         </TouchableOpacity>
                     </View>
                     {result &&
@@ -215,39 +152,26 @@ export const ConvertTool = () => {
                                 activeOpacity={1}
                                 style={[
                                     styles.button,
-                                    isHovered ? styles.hoveredButton : styles.normalButton
+                                    isHovered ? Styling.hoveredButton : Styling.normalButton
                                 ]}
                                 onMouseEnter={() => setIsHovered(true)}
                                 onMouseLeave={() => setIsHovered(false)}
                             >
 
                                 <Text style={{
-                                    color: 'white',
-                                    fontSize: 18,
-                                    fontFamily: 'Inter_900Black',
-                                    alignSelf: 'center',
-                                    marginBottom: '1rem'
-                                    // width: '200px'
-                                    // margin: '1rem'
+                                    ...Styling.small_text, 
+                                    margin: HeightRatio(10)
                                 }}>{result}</Text>
 
                                 {copiedText != '' &&
                                     <Text style={{
-                                        color: 'white',
-                                        fontSize: 20,
-                                        margin: '0.5rem',
-                                        fontFamily: 'Inter_900Black',
-                                        alignSelf: 'center'
+                                        ...Styling.small_text, 
+                                        margin: HeightRatio(10)
                                     }}>Copied!</Text>
                                 }
 
                                 <View style={{
-                                    width: '100px',
-                                    alignSelf: 'center',
-                                    height: '100px',
-                                    borderRadius: 6,
-                                    borderWidth: 1,
-                                    borderColor: 'rgba(100, 100, 100, 0.25)',
+                                    ...Styling.large_color_block,
                                     backgroundColor: `${result}`
                                 }}></View>
 
@@ -259,7 +183,7 @@ export const ConvertTool = () => {
                 </View>
 
 
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '22rem', alignSelf: 'center', justifyContent: 'center' }}>
+                <View style={{ ...Styling.palette_container }}>
                     {gradient.map((c, i) => (
                         <>
                             <TouchableOpacity
@@ -270,11 +194,7 @@ export const ConvertTool = () => {
                             >
                                 <View key={i} style={{
                                     backgroundColor: c,
-                                    height: 50,
-                                    width: 75,
-                                    borderWidth: 1,
-                                    borderRadius: 6,
-                                    borderColor: 'rgba(100, 100, 100, 0.25)',
+                                     ...Styling.small_color_block
                                 }}></View>
                             </TouchableOpacity>
                         </>
@@ -295,18 +215,6 @@ const styles = StyleSheet.create({
     button: {
         padding: 10,
         borderRadius: 5,
-    },
-    hoveredButton: {
-        marginBottom: '10px',
-        alignSelf: 'center',
-        flexDirection: 'column',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
-        width: '300px'
-    },
-    normalButton: {
-        marginBottom: '10px',
-        alignSelf: 'center',
-        flexDirection: 'column',
     },
     buttonText: {
         color: '#000',

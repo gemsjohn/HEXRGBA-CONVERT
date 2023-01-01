@@ -75,7 +75,7 @@ export const Index = () => {
                         <HarmoniousPalette />
                     </View>
                 </View>
-                <View style={{ flexDirection: 'column', }}>
+                <View style={{ flexDirection: 'column' }}>
                     <View style={{ ...Styling.content_container }}>
                         <RandomPalette />
                     </View>
