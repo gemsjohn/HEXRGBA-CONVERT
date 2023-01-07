@@ -1,15 +1,14 @@
 {
   "expo": {
-    "name": "HEXRGBA",
-    "slug": "HEXRGBA",
-    "version": "1.0.0",
+    "name": "Color Swatch",
+    "slug": "ColorSwatch",
+    "version": "1.0.4",
     "orientation": "portrait",
-    "icon": "./assets/favicon.png",
+    "icon": "./assets/mobile_app_icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+    "androidStatusBar": {
+      "backgroundColor": "#000000",
+      "translucent": false
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,13 +20,20 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.ColorSwatch",
+      "versionCode": 4,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/mobile_app_icon.png",
+        "backgroundColor": "#000000"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4bd715e6-5950-4d48-93ef-c3839771a3e5"
+      }
     }
   }
 }

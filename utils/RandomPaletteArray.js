@@ -58,17 +58,15 @@ export const RandomPaletteArray = () => {
                     null
                 }
                 <View style={{...Styling.circle_palette_container, width: WidthRatio(300)}}>
-                    {palettes.map((num, i) => (
-                        <>
-                            <View style={{...Styling.circle_palette_box}} key={i} >
-                                {palettes[i].map((color, index) => (
-                                    <TouchableOpacity key={index} onPress={() => copyColorCode(color)}>
-                                        <View style={[Styling.circle_color, { backgroundColor: color }]} />
-                                    </TouchableOpacity>
-                                ))}
-                            </View>
-                        </>
+                {palettes.map((num, i) => (
+                <View style={{...Styling.circle_palette_box}} key={i}>
+                    {palettes[i].map((color, index) => (
+                    <TouchableOpacity key={index} onPress={() => copyColorCode(color)}>
+                        <View style={[Styling.circle_color, { backgroundColor: color }]} />
+                    </TouchableOpacity>
                     ))}
+                </View>
+                ))}
                 </View>
             </View>
         </>

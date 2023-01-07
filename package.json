@@ -25,6 +25,7 @@
     "expo-image-picker": "^14.0.2",
     "expo-linear-gradient": "^12.0.1",
     "expo-permissions": "^14.0.0",
+    "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "gh-pages": "^4.0.0",
     "react": "18.1.0",
@@ -35,7 +36,8 @@
     "react-native-web": "~0.18.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "metro-minify-terser": "^0.73.4"
   },
   "private": true
 }

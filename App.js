@@ -6,6 +6,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Styling, WidthRatio, HeightRatio } from './Styling';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.hideAsync();
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -42,13 +45,18 @@ function HomeScreen({ navigation }) {
       }}>
 
         {Platform.OS !== 'android' &&
+          <>
           <Text style={Styling.heading_0}>
-            HEX to RGBA <Text style={Styling.accent_color}>Pro</Text>
+            Color Swatch 
           </Text>
+          <Text style={{...Styling.heading_0, ...Styling.accent_color}}>
+            Converter and Palette Generator
+          </Text>
+          </>
         }
         {Platform.OS === 'android' &&
           <Text style={Styling.heading_0}>
-          Color Palette and <Text style={Styling.accent_color}>Converter</Text>
+          Color <Text style={Styling.accent_color}>Swatch</Text>
         </Text>
         }
         <View style={Styling.division_line} />
