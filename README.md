@@ -21,6 +21,11 @@
   - Complementary
   - Monochromatic
   - Gradient
+  
+ ## TECH STACK
+ * React
+ * React Native
+ * Expo
 
 
 
